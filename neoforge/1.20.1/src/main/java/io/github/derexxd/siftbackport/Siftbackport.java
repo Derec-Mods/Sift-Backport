@@ -121,6 +121,19 @@ public class Siftbackport {
             // Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+            
+            event.enqueueWork(() -> {
+                net.minecraft.client.renderer.DimensionSpecialEffects.EFFECTS.put(new net.minecraft.resources.ResourceLocation("sift", "sift"), new net.minecraft.client.renderer.DimensionSpecialEffects(Float.NaN, true, net.minecraft.client.renderer.DimensionSpecialEffects.SkyType.NORMAL, false, false) {
+                    @Override
+                    public net.minecraft.world.phys.Vec3 getBrightnessDependentFogColor(net.minecraft.world.phys.Vec3 biomeFogColor, float daylight) {
+                        return biomeFogColor.multiply(daylight * 0.94F + 0.06F, daylight * 0.94F + 0.06F, daylight * 0.91F + 0.09F);
+                    }
+                    @Override
+                    public boolean isFoggyAt(int x, int y) {
+                        return false;
+                    }
+                });
+            });
         }
     }
 }
