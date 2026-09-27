@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "siftbackport",
+  "version": "${version}",
+  "name": "SiftBackport",
+  "description": "Backports the Sift dimension.",
+  "authors": [
+    "DerexXD"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/siftbackport/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "io.github.derexxd.siftbackport.Siftbackport"
+    ],
+    "client": [
+      "io.github.derexxd.siftbackport.SiftbackportClient"
+    ]
+  },
+  "mixins": [
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "~1.19.2",
+    "java": ">=17",
+    "fabric-api": "*"
+  },
+  "suggests": {}
+}
