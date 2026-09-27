@@ -9,7 +9,7 @@ version = mod_version
 group = mod_group_id
 
 base {
-    archivesName = mod_id
+    archivesName = project.archives_base_name
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
@@ -85,4 +85,8 @@ tasks.named('jar', Jar).configure {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
+}
+
+tasks.withType(AbstractArchiveTask).configureEach {
+    archiveVersion.set("${project.mod_version}-${project.minecraft_version}-${project.modloader}")
 }
