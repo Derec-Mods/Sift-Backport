@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 
 @Mod(Siftbackport.MODID)
 public class Siftbackport {
+    // have to hardcode this because you can't read from gradle.properties at runtime dyamically
     public static final String MODID = "sift_backport";
     private static final Logger LOGGER = LogUtils.getLogger();
 
