@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "siftbackport",
   "version": "${version}",
-  "name": "SiftBackport",
+  "name": "Sift Backport",
   "description": "Backports the Sift dimension.",
   "authors": [
     "DerexXD"
@@ -29,3 +29,4 @@
   },
   "suggests": {}
 }
+
