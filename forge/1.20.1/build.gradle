@@ -213,5 +213,5 @@ sourceSets.each {
 }
 
 tasks.withType(AbstractArchiveTask).configureEach {
-    archiveVersion.set("${project.mod_version}-${project.minecraft_version}-${project.modloader}")
+    archiveVersion.set(project.mod_version + "-" + project.minecraft_version + "-" + project.modloader)
 }
