@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "siftbackport",
+  "id": "sift_backport",
   "version": "${version}",
   "name": "Sift Backport",
   "description": "Backports the Sift dimension.",
@@ -9,14 +9,14 @@
   ],
   "contact": {},
   "license": "MIT",
-  "icon": "assets/siftbackport/icon.png",
+  "icon": "assets/sift_backport/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "io.github.derexxd.siftbackport.Siftbackport"
+      "io.github.derexxd.sift_backport.Siftbackport"
     ],
     "client": [
-      "io.github.derexxd.siftbackport.SiftbackportClient"
+      "io.github.derexxd.sift_backport.SiftbackportClient"
     ]
   },
   "mixins": [
@@ -29,4 +29,5 @@
   },
   "suggests": {}
 }
+
 
