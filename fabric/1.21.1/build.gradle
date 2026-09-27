@@ -47,3 +47,9 @@ jar {
 tasks.withType(AbstractArchiveTask).configureEach {
     archiveVersion.set(project.mod_version + "-" + project.minecraft_version + "-" + project.modloader)
 }
+
+tasks.named('processResources', ProcessResources).configure {
+    from(project.file("../../shared")) {
+        include "assets/sift/textures/**/*.png"
+    }
+}
