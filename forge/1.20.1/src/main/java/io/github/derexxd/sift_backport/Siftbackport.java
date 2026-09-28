@@ -51,7 +51,7 @@ public class Siftbackport {
 
     // Creates a new food item with the id "sift_backport:example_id", nutrition 1 and saturation 2
     public static final RegistryObject<Item> EXAMPLE_ITEM = ITEMS.register("example_item", () -> new Item(new Item.Properties().food(new FoodProperties.Builder()
-            .alwaysEdible().nutrition(1).saturationModifier(2f).build())));
+            .alwaysEat().nutrition(1).saturationMod(2f).build())));
 
     // Creates a creative tab with the id "sift_backport:example_tab" for the example item, that is placed after the combat tab
     public static final RegistryObject<CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
@@ -61,8 +61,8 @@ public class Siftbackport {
                 output.accept(EXAMPLE_ITEM.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
             }).build());
 
-    public Siftbackport(FMLJavaModLoadingContext context) {
-        IEventBus modEventBus = context.getModEventBus();
+    public Siftbackport() {
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
@@ -81,7 +81,7 @@ public class Siftbackport {
         modEventBus.addListener(this::addCreative);
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
-        context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
