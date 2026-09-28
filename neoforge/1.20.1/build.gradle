@@ -8,42 +8,32 @@ version = mod_version
 group = mod_group_id
 
 base {
-    archivesName = mod_id
+    archivesName = project.archives_base_name
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
-minecraft {
-    mappings channel: 'official', version: minecraft_version
-    copyIdeResources = true
+runs {
+    configureEach {
+        workingDirectory project.file('run')
+        systemProperty 'forge.logging.markers', 'REGISTRIES'
+        systemProperty 'forge.logging.console.level', 'debug'
+    }
 
-    runs {
-        configureEach {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-        }
+    client {
+        systemProperty 'forge.enabledGameTestNamespaces', mod_id
+    }
 
-        client {
-            property 'forge.enabledGameTestNamespaces', mod_id
-        }
-
-        server {
-            property 'forge.enabledGameTestNamespaces', mod_id
-            args '--nogui'
-        }
-
-        data {
-            workingDirectory project.file('run-data')
-            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
-        }
+    server {
+        systemProperty 'forge.enabledGameTestNamespaces', mod_id
+        programArgument '--nogui'
     }
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
-    implementation "net.neoforged:neoforge:${neo_version}"
+    implementation "net.neoforged:forge:${minecraft_version}-${neo_version}"
 }
 
 tasks.named('processResources', ProcessResources).configure {
@@ -54,7 +44,6 @@ tasks.named('processResources', ProcessResources).configure {
             mod_id              : mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
             mod_authors         : mod_authors, mod_description: mod_description,
     ]
-
     inputs.properties replaceProperties
 
     filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
@@ -78,4 +67,14 @@ tasks.named('jar', Jar).configure {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
+}
+
+tasks.withType(AbstractArchiveTask).configureEach {
+    archiveVersion.set(project.mod_version + "-" + project.minecraft_version + "-" + project.modloader)
+}
+
+tasks.named('processResources', ProcessResources).configure {
+    from(project.file("../../shared")) {
+        include "assets/sift/textures/**/*.png"
+    }
 }
