@@ -76,6 +76,7 @@ public class Siftbackport {
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.addListener(io.github.derexxd.sift_backport.command.SiftTeleportCommand::onRegisterCommands);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
