@@ -3,7 +3,7 @@
   "modid": "sift_backport",
   "name": "Sift Backport",
   "description": "Example placeholder mod.",
-  "version": "1.0.0.0",
+  "version": "1.0.0.1",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
