@@ -15,15 +15,13 @@ public class BiomeSift extends Biome {
                 .setHeightVariation(0.05F)
                 .setTemperature(0.5F)
                 .setRainfall(0.5F)
+                .setWaterColor(4159204)
                 .setRainDisabled());
 
         setRegistryName(Siftbackport.MODID, "sift");
 
         this.topBlock = Blocks.STONE.getDefaultState();
         this.fillerBlock = Blocks.STONE.getDefaultState();
-
-        // 4159204 = 0x3F76E4 (matches fabric/1.20.1 & temp)
-        this.waterColor = 4159204;
 
         this.spawnableMonsterList.clear();
         this.spawnableCreatureList.clear();
@@ -50,5 +48,11 @@ public class BiomeSift extends Biome {
     public int getFoliageColorAtPos(BlockPos pos) {
         // 15249151 = 0xE8AFFF
         return 15249151;
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public int getWaterColorMultiplier() {
+        return 4159204;
     }
 }
