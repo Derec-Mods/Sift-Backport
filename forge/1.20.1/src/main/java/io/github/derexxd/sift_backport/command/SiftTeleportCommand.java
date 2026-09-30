@@ -13,7 +13,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.event.RegisterCommandsEvent;
 
@@ -77,16 +76,6 @@ public class SiftTeleportCommand {
             BlockPos topPos = targetLevel.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, new BlockPos((int) x, 0, (int) z));
             double y = topPos.getY();
 
-            if (y <= targetLevel.getMinBuildHeight()) {
-                y = 65;
-                for (int dx = -1; dx <= 1; dx++) {
-                    for (int dz = -1; dz <= 1; dz++) {
-                        targetLevel.setBlockAndUpdate(new BlockPos((int) x + dx, (int) y - 1, (int) z + dz), Blocks.STONE.defaultBlockState());
-                        targetLevel.setBlockAndUpdate(new BlockPos((int) x + dx, (int) y, (int) z + dz), Blocks.AIR.defaultBlockState());
-                        targetLevel.setBlockAndUpdate(new BlockPos((int) x + dx, (int) y + 1, (int) z + dz), Blocks.AIR.defaultBlockState());
-                    }
-                }
-            }
 
             player.teleportTo(targetLevel, x + 0.5, y + 1.0, z + 0.5, player.getYRot(), 0.0F);
         }
