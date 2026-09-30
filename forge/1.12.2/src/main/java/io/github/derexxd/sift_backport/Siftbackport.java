@@ -1,6 +1,6 @@
 package io.github.derexxd.sift_backport;
 
-import io.github.derexxd.sift_backport.command.CommandSiftTp;
+import io.github.derexxd.sift_backport.command.CommandSiftTeleport;
 import io.github.derexxd.sift_backport.world.ModDimensions;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -35,7 +35,7 @@ public class Siftbackport
     @EventHandler
     public void serverStarting(FMLServerStartingEvent event)
     {
-        event.registerServerCommand(new CommandSiftTp());
+        event.registerServerCommand(new CommandSiftTeleport());
     }
 }
 
