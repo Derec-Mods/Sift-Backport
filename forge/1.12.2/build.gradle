@@ -11,6 +11,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
+apply plugin: 'idea'
 apply plugin: 'maven-publish'
 
 version = '1.0.0.0'
@@ -115,3 +116,30 @@ publishing {
         }
     }
 }
+
+// Build to jar task (compiles, reobfuscates, and outputs jar to build/libs)
+task buildToJar(dependsOn: 'build') {
+    group = 'build'
+    description = 'Compiles and packages the obfuscated mod JAR into build/libs'
+}
+
+// Ensure runClient task is registered for Gradle and IDE task runners
+if (tasks.findByName('runClient') == null) {
+    task runClient(type: JavaExec, dependsOn: 'classes') {
+        group = 'forgegradle runs'
+        description = 'Runs the Minecraft 1.12.2 client'
+        main = 'net.minecraft.launchwrapper.Launch'
+        classpath = sourceSets.main.runtimeClasspath
+        workingDir = project.file('run')
+        args '--version', '1.12.2',
+             '--tweakClass', 'net.minecraftforge.fml.common.launcher.FMLTweaker',
+             '--accessToken', 'test',
+             '--assetIndex', '1.12',
+             '--assetsDir', "${gradle.gradleUserHomeDir}/caches/forge_gradle/assets"
+        jvmArgs '-Dforge.logging.markers=SCAN,REGISTRIES,REGISTRYDUMP',
+                '-Dforge.logging.console.level=debug'
+    }
+} else {
+    tasks.findByName('runClient').group = 'forgegradle runs'
+}
+
