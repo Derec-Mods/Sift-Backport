@@ -22,6 +22,19 @@ public class WorldProviderSift extends WorldProvider {
     }
 
     @Override
+    public float calculateCelestialAngle(long worldTime, float partialTicks) {
+        return 0.0F;
+    }
+
+    @Override
+    protected void generateLightBrightnessTable() {
+        for (int i = 0; i <= 15; i++) {
+            float base = 1.0F - (float) i / 15.0F;
+            this.lightBrightnessTable[i] = (1.0F - base) / (base * 3.0F + 1.0F) * (1.0F - 0.5F) + 0.5F;
+        }
+    }
+
+    @Override
     public DimensionType getDimensionType() {
         return ModDimensions.SIFT_DIM_TYPE;
     }
@@ -33,7 +46,6 @@ public class WorldProviderSift extends WorldProvider {
 
     @Override
     public boolean canRespawnHere() {
-        // Bed works in Sift dimension (matches "bed_works": true)
         return true;
     }
 
@@ -53,9 +65,6 @@ public class WorldProviderSift extends WorldProvider {
         float daylight = MathHelper.cos(celestialAngle * ((float)Math.PI * 2F)) * 2.0F + 0.5F;
         daylight = MathHelper.clamp(daylight, 0.0F, 1.0F);
 
-        // Consistent with DimensionSpecialEffects in 1.20/1.21:
-        // biomeFogColor.multiply(daylight * 0.94F + 0.06F, daylight * 0.94F + 0.06F, daylight * 0.91F + 0.09F)
-        // Biome fog color: 16758706 (0xFFB7B2)
         float r = 0.999F * (daylight * 0.94F + 0.06F);
         float g = 0.718F * (daylight * 0.94F + 0.06F);
         float b = 0.698F * (daylight * 0.91F + 0.09F);
