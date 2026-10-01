@@ -103,27 +103,27 @@
           "type": "minecraft:min",
           "argument1": {
             "type": "minecraft:y_clamped_gradient",
-            "from_y": 110,
+            "from_y": 120,
             "to_y": 145,
-            "from_value": -1.2,
-            "to_value": 0.1
+            "from_value": -1.5,
+            "to_value": -0.4
           },
           "argument2": {
             "type": "minecraft:y_clamped_gradient",
             "from_y": 145,
-            "to_y": 180,
-            "from_value": 0.1,
-            "to_value": -1.2
+            "to_y": 170,
+            "from_value": -0.4,
+            "to_value": -1.5
           }
         },
         "argument2": {
           "type": "minecraft:mul",
-          "argument1": 0.7,
+          "argument1": 0.95,
           "argument2": {
             "type": "minecraft:noise",
             "noise": "sift:cliff_3d",
-            "xz_scale": 0.38,
-            "y_scale": 0.35
+            "xz_scale": 0.52,
+            "y_scale": 0.45
           }
         }
       }
@@ -199,27 +199,27 @@
           "type": "minecraft:min",
           "argument1": {
             "type": "minecraft:y_clamped_gradient",
-            "from_y": 110,
+            "from_y": 120,
             "to_y": 145,
-            "from_value": -1.2,
-            "to_value": 0.1
+            "from_value": -1.5,
+            "to_value": -0.4
           },
           "argument2": {
             "type": "minecraft:y_clamped_gradient",
             "from_y": 145,
-            "to_y": 180,
-            "from_value": 0.1,
-            "to_value": -1.2
+            "to_y": 170,
+            "from_value": -0.4,
+            "to_value": -1.5
           }
         },
         "argument2": {
           "type": "minecraft:mul",
-          "argument1": 0.7,
+          "argument1": 0.95,
           "argument2": {
             "type": "minecraft:noise",
             "noise": "sift:cliff_3d",
-            "xz_scale": 0.38,
-            "y_scale": 0.35
+            "xz_scale": 0.52,
+            "y_scale": 0.45
           }
         }
       }
