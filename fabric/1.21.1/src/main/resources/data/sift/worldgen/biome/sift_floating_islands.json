@@ -11,7 +11,20 @@
     "foliage_color": 15249151
   },
   "carvers": {},
-  "features": [],
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "sift:floating_island_vines"
+    ]
+  ],
   "spawners": {},
   "spawn_costs": {}
 }
