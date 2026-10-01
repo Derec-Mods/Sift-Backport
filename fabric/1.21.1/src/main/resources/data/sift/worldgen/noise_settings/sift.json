@@ -74,7 +74,7 @@
       {
         "type": "minecraft:condition",
         "if_true": {
-          "type": "minecraft:steep_slope"
+          "type": "minecraft:steep"
         },
         "then_run": {
           "type": "minecraft:block",
