@@ -2,7 +2,7 @@
   "type": "sift:sift",
   "generator": {
     "type": "minecraft:noise",
-    "settings": "minecraft:overworld",
+    "settings": "sift:sift",
     "biome_source": {
       "type": "minecraft:fixed",
       "biome": "sift:sift"
