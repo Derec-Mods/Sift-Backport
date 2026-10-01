@@ -40,11 +40,11 @@
         },
         "argument2": {
           "type": "minecraft:mul",
-          "argument1": 0.12,
+          "argument1": 0.35,
           "argument2": {
             "type": "minecraft:noise",
-            "noise": "sift:cliff_3d",
-            "xz_scale": 0.15,
+            "noise": "minecraft:gravel",
+            "xz_scale": 0.75,
             "y_scale": 0.0
           }
         }
@@ -76,20 +76,20 @@
         },
         "argument2": {
           "type": "minecraft:mul",
-          "argument1": 0.22,
+          "argument1": 0.38,
           "argument2": {
             "type": "minecraft:clamp",
             "input": {
               "type": "minecraft:add",
               "argument1": {
                 "type": "minecraft:mul",
-                "argument1": 14.0,
+                "argument1": 35.0,
                 "argument2": {
                   "type": "minecraft:abs",
                   "argument": {
                     "type": "minecraft:noise",
                     "noise": "sift:cliff_3d",
-                    "xz_scale": 0.18,
+                    "xz_scale": 0.32,
                     "y_scale": 0.0
                   }
                 }
@@ -117,11 +117,11 @@
           },
           "argument2": {
             "type": "minecraft:mul",
-            "argument1": 0.12,
+            "argument1": 0.35,
             "argument2": {
               "type": "minecraft:noise",
-              "noise": "sift:cliff_3d",
-              "xz_scale": 0.15,
+              "noise": "minecraft:gravel",
+              "xz_scale": 0.75,
               "y_scale": 0.0
             }
           }
@@ -153,20 +153,20 @@
           },
           "argument2": {
             "type": "minecraft:mul",
-            "argument1": 0.22,
+            "argument1": 0.38,
             "argument2": {
               "type": "minecraft:clamp",
               "input": {
                 "type": "minecraft:add",
                 "argument1": {
                   "type": "minecraft:mul",
-                  "argument1": 14.0,
+                  "argument1": 35.0,
                   "argument2": {
                     "type": "minecraft:abs",
                     "argument": {
                       "type": "minecraft:noise",
                       "noise": "sift:cliff_3d",
-                      "xz_scale": 0.18,
+                      "xz_scale": 0.32,
                       "y_scale": 0.0
                     }
                   }
