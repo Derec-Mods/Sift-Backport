@@ -123,4 +123,9 @@ task buildToJar(dependsOn: 'build') {
     description = 'Compiles and packages the obfuscated mod JAR into build/libs'
 }
 
-
+processResources {
+    from(project.file("../../shared")) {
+        include "assets/**/*.png"
+        exclude "assets/screenshots/**"
+    }
+}
