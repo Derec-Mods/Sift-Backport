@@ -20,3 +20,6 @@ No features are live yet in vanilla Minecraft, but this backport will remain com
 ## ❤️ Credits:
 
 Coded by DerexXD
+
+*   **Vastiel** - Bedrock addon with multicolor variants 
+*   **Additional credits / inspiration**: Sonicmarrion, zerw
