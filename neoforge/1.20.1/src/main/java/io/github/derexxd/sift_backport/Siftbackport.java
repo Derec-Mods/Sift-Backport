@@ -12,19 +12,27 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
 @Mod(Siftbackport.MODID)
 public class Siftbackport {
-    // have to hardcode this because you can't read from gradle.properties at runtime dyamically
     public static final String MODID = "sift_backport";
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    public Siftbackport(IEventBus modEventBus) {
+    public Siftbackport() {
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
         modEventBus.addListener(this::commonSetup);
+        modEventBus.addListener(this::addCreative);
+
+        io.github.derexxd.sift_backport.block.ModBlocks.BLOCKS.register(modEventBus);
+        io.github.derexxd.sift_backport.item.ModItems.ITEMS.register(modEventBus);
+        io.github.derexxd.sift_backport.entity.ModEntities.ENTITY_TYPES.register(modEventBus);
+
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.addListener(io.github.derexxd.sift_backport.command.SiftTeleportCommand::onRegisterCommands);
+
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
@@ -32,11 +40,46 @@ public class Siftbackport {
         LOGGER.info("HELLO FROM SIFT COMMON SETUP");
     }
 
+    private void addCreative(net.minecraftforge.event.BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == net.minecraft.world.item.CreativeModeTabs.SPAWN_EGGS) {
+            event.accept(io.github.derexxd.sift_backport.item.ModItems.BLUB_SPAWN_EGG);
+        }
+        if (event.getTabKey() == net.minecraft.world.item.CreativeModeTabs.NATURAL_BLOCKS) {
+            event.accept(io.github.derexxd.sift_backport.block.ModBlocks.SCULK_GRASS_BLOCK);
+            event.accept(io.github.derexxd.sift_backport.block.ModBlocks.LIGHT_SCULK_GRASS_BLOCK);
+            event.accept(io.github.derexxd.sift_backport.block.ModBlocks.SCULK_GRASS);
+            event.accept(io.github.derexxd.sift_backport.block.ModBlocks.TALL_SCULK_GRASS);
+        }
+    }
+
+    @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+    public static class ModEventBusEvents {
+        @SubscribeEvent
+        public static void entityAttributeEvent(net.minecraftforge.event.entity.EntityAttributeCreationEvent event) {
+            event.put(io.github.derexxd.sift_backport.entity.ModEntities.BLUB.get(), io.github.derexxd.sift_backport.entity.BlubEntity.createAttributes().build());
+        }
+
+        @SubscribeEvent
+        public static void registerSpawnPlacements(net.minecraftforge.event.entity.SpawnPlacementRegisterEvent event) {
+            event.register(io.github.derexxd.sift_backport.entity.ModEntities.BLUB.get(), net.minecraft.world.entity.SpawnPlacements.Type.ON_GROUND, net.minecraft.world.level.levelgen.Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, io.github.derexxd.sift_backport.entity.BlubEntity::checkBlubSpawnRules, net.minecraftforge.event.entity.SpawnPlacementRegisterEvent.Operation.REPLACE);
+        }
+    }
+
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             LOGGER.info("HELLO FROM SIFT CLIENT SETUP");
+        }
+
+        @SubscribeEvent
+        public static void registerRenderers(net.minecraftforge.client.event.EntityRenderersEvent.RegisterRenderers event) {
+            event.registerEntityRenderer(io.github.derexxd.sift_backport.entity.ModEntities.BLUB.get(), io.github.derexxd.sift_backport.client.renderer.BlubRenderer::new);
+        }
+
+        @SubscribeEvent
+        public static void registerLayerDefinitions(net.minecraftforge.client.event.EntityRenderersEvent.RegisterLayerDefinitions event) {
+            event.registerLayerDefinition(io.github.derexxd.sift_backport.client.model.BlubModel.LAYER_LOCATION, io.github.derexxd.sift_backport.client.model.BlubModel::createBodyLayer);
         }
 
         @SubscribeEvent

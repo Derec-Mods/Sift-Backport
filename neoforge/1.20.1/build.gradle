@@ -52,6 +52,7 @@ tasks.named('processResources', ProcessResources).configure {
 }
 
 tasks.named('jar', Jar).configure {
+    exclude('screenshots/**')
     manifest {
         attributes([
                 "Specification-Title"     : mod_id,
