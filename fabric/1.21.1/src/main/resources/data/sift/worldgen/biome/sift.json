@@ -11,7 +11,21 @@
     "foliage_color": 15249151
   },
   "carvers": {},
-  "features": [],
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "sift:tall_sculk_grass",
+      "sift:sculk_grass"
+    ]
+  ],
   "spawners": {},
   "spawn_costs": {}
 }
