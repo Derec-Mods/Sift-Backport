@@ -68,9 +68,8 @@ public class SiftTeleportCommand {
 
             double x = player.getX();
             double z = player.getZ();
-            BlockPos topPos = targetLevel.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, new BlockPos(x, 0, z));
+            BlockPos topPos = targetLevel.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, new BlockPos((int) x, 0, (int) z));
             double y = topPos.getY();
-
 
             player.teleportTo(targetLevel, x + 0.5, y + 1.0, z + 0.5, player.yRot, 0.0F);
         }
