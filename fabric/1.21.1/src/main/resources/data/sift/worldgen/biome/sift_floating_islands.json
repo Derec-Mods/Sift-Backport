@@ -22,7 +22,9 @@
     [],
     [],
     [
-      "sift:floating_island_vines"
+      "sift:floating_island_vines",
+      "sift:tall_sculk_grass",
+      "sift:sculk_grass"
     ]
   ],
   "spawners": {},
