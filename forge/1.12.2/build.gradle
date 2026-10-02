@@ -14,7 +14,7 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'maven-publish'
 
-version = '1.0.0.1'
+version = '1.0.3.0'
 group = 'io.github.derexxd' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'Sift-Backport'
 
