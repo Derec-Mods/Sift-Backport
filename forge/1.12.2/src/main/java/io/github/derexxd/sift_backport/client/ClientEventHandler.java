@@ -25,11 +25,11 @@ public class ClientEventHandler {
         ModelLoader.setCustomStateMapper(ModBlocks.TALL_SCULK_GRASS, new StateMap.Builder().ignore(BlockDoublePlant.VARIANT, BlockDoublePlant.FACING).build());
 
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.SCULK_GRASS_BLOCK), 0,
-                new ModelResourceLocation(ModBlocks.SCULK_GRASS_BLOCK.getRegistryName(), "normal"));
+                new ModelResourceLocation(ModBlocks.SCULK_GRASS_BLOCK.getRegistryName(), "inventory"));
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.LIGHT_SCULK_GRASS_BLOCK), 0,
-                new ModelResourceLocation(ModBlocks.LIGHT_SCULK_GRASS_BLOCK.getRegistryName(), "normal"));
+                new ModelResourceLocation(ModBlocks.LIGHT_SCULK_GRASS_BLOCK.getRegistryName(), "inventory"));
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.SCULK_GRASS), 0,
-                new ModelResourceLocation(ModBlocks.SCULK_GRASS.getRegistryName(), "normal"));
+                new ModelResourceLocation(ModBlocks.SCULK_GRASS.getRegistryName(), "inventory"));
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.TALL_SCULK_GRASS), 0,
                 new ModelResourceLocation(ModBlocks.TALL_SCULK_GRASS.getRegistryName(), "inventory"));
     }
