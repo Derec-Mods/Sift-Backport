@@ -20,6 +20,16 @@ archivesBaseName = 'Sift-Backport'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
+sourceSets {
+    main {
+        resources {
+            srcDir 'src/main/resources'
+            srcDir '../../shared'
+            exclude 'assets/screenshots/**'
+        }
+    }
+}
+
 minecraft {
     // The mappings can be changed at any time, and must be in the following format.
     // snapshot_YYYYMMDD   Snapshot are built nightly.
@@ -43,15 +53,28 @@ minecraft {
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
+
+            mods {
+                sift {
+                    source sourceSets.main
+                }
+            }
         }
 
         server {
-
+            workingDirectory project.file('run')
+            
             // Recommended logging data for a userdev environment
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
+
+            mods {
+                sift {
+                    source sourceSets.main
+                }
+            }
         }
     }
 }

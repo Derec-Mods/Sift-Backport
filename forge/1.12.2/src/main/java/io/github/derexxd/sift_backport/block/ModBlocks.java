@@ -24,7 +24,7 @@ public class ModBlocks {
             super(Material.GRASS, MapColor.CYAN);
             this.setHardness(0.6F);
             this.setSoundType(SoundType.PLANT);
-            this.setRegistryName(name);
+            this.setRegistryName(new net.minecraft.util.ResourceLocation(Siftbackport.MODID, name));
             this.setTranslationKey("sift_backport." + name);
             this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
         }
@@ -34,7 +34,7 @@ public class ModBlocks {
         public BlockSculkBush(String name) {
             super(Material.PLANTS);
             this.setSoundType(SoundType.PLANT);
-            this.setRegistryName(name);
+            this.setRegistryName(new net.minecraft.util.ResourceLocation(Siftbackport.MODID, name));
             this.setTranslationKey("sift_backport." + name);
             this.setCreativeTab(CreativeTabs.DECORATIONS);
         }
@@ -50,7 +50,7 @@ public class ModBlocks {
         public BlockTallSculk(String name) {
             super();
             this.setSoundType(SoundType.PLANT);
-            this.setRegistryName(name);
+            this.setRegistryName(new net.minecraft.util.ResourceLocation(Siftbackport.MODID, name));
             this.setTranslationKey("sift_backport." + name);
             this.setCreativeTab(CreativeTabs.DECORATIONS);
         }

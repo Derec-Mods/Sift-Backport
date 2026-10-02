@@ -1,6 +1,6 @@
 {
   "variants": {
-    "": {
+    "normal": {
       "model": "sift:block/sculk_grass"
     }
   }
