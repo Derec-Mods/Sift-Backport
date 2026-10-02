@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cross",
-  "textures": {
-    "cross": "sift:block/tall_sculk_grass_top"
-  }
-}
