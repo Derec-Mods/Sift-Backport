@@ -20,3 +20,6 @@ No features are live yet in vanilla Minecraft, but this backport will remain com
 ## ❤️ Credits:
 
 Coded by DerexXD
+
+*   **[Vastiel](https://www.youtube.com/@Vastiel)** - Bedrock addon with multicolor variants 
+*   **Additional credits / inspiration**: [Sonicmarrion](https://www.planetminecraft.com/member/sonicmarrion/), [zerw](https://modrinth.com/user/Zerw)

@@ -26,6 +26,15 @@
       "sift:sculk_grass"
     ]
   ],
-  "spawners": {},
+  "spawners": {
+    "creature": [
+      {
+        "type": "sift:blub",
+        "weight": 10,
+        "minCount": 2,
+        "maxCount": 4
+      }
+    ]
+  },
   "spawn_costs": {}
 }
