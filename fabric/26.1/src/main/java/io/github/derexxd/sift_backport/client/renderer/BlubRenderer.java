@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 
 public class BlubRenderer extends MobRenderer<BlubEntity, BlubModel<BlubEntity>> {
-    private static final ResourceLocation TEXTURE = ResourceLocation.parse("sift:textures/entity/blub.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation("sift", "textures/entity/blub.png");
 
     public BlubRenderer(EntityRendererProvider.Context context) {
         super(context, new BlubModel<>(context.bakeLayer(BlubModel.LAYER_LOCATION)), 0.4F);

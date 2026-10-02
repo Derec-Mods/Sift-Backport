@@ -47,14 +47,14 @@ public class ModBlocks {
                     .pushReaction(PushReaction.DESTROY)));
 
     private static Block registerBlock(String name, Block block) {
-        ResourceLocation id = ResourceLocation.parse("sift:" + name);
+        ResourceLocation id = new ResourceLocation("sift", name);
         Registry.register(BuiltInRegistries.BLOCK, id, block);
         Registry.register(BuiltInRegistries.ITEM, id, new BlockItem(block, new Item.Properties()));
         return block;
     }
 
     private static Block registerDoublePlantBlock(String name, Block block) {
-        ResourceLocation id = ResourceLocation.parse("sift:" + name);
+        ResourceLocation id = new ResourceLocation("sift", name);
         Registry.register(BuiltInRegistries.BLOCK, id, block);
         Registry.register(BuiltInRegistries.ITEM, id, new DoubleHighBlockItem(block, new Item.Properties()));
         return block;

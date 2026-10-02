@@ -18,26 +18,24 @@ public class ModBlocks {
     public static final Block SCULK_GRASS_BLOCK = registerBlock("sculk_grass_block",
             new Block(BlockBehaviour.Properties.of(Material.GRASS, MaterialColor.COLOR_ORANGE)
                     .strength(0.6F)
-                    .sound(SoundType.SCULK)));
+                    .sound(SoundType.SLIME_BLOCK)));
 
     public static final Block LIGHT_SCULK_GRASS_BLOCK = registerBlock("light_sculk_grass_block",
             new Block(BlockBehaviour.Properties.of(Material.GRASS, MaterialColor.COLOR_PINK)
                     .strength(0.6F)
-                    .sound(SoundType.SCULK)));
+                    .sound(SoundType.SLIME_BLOCK)));
 
     public static final Block SCULK_GRASS = registerBlock("sculk_grass",
             new SculkGrassBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_PINK)
                     .noCollission()
                     .instabreak()
-                    .sound(SoundType.GRASS)
-                    .offsetType(BlockBehaviour.OffsetType.XYZ)));
+                    .sound(SoundType.GRASS)));
 
     public static final Block TALL_SCULK_GRASS = registerDoublePlantBlock("tall_sculk_grass",
             new TallSculkGrassBlock(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT, MaterialColor.COLOR_PINK)
                     .noCollission()
                     .instabreak()
-                    .sound(SoundType.GRASS)
-                    .offsetType(BlockBehaviour.OffsetType.XZ)));
+                    .sound(SoundType.GRASS)));
 
     private static Block registerBlock(String name, Block block) {
         ResourceLocation id = new ResourceLocation("sift", name);

@@ -1,14 +1,14 @@
 [
 {
-  "modid": "sift_backport",
+  "modid": "sift",
   "name": "Sift Backport",
-  "description": "Example placeholder mod.",
-  "version": "1.0.0.1",
+  "description": "The Sift Backport Mod.",
+  "version": "1.0.3.0",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "authorList": ["Derex"],
+  "credits": "",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

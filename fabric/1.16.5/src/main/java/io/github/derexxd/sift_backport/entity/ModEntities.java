@@ -20,6 +20,5 @@ public class ModEntities {
 
     public static void register() {
         FabricDefaultAttributeRegistry.register(BLUB, BlubEntity.createAttributes());
-        SpawnPlacements.register(BLUB, SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, BlubEntity::checkBlubSpawnRules);
     }
 }

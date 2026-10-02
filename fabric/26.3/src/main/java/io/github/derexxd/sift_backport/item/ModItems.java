@@ -12,7 +12,7 @@ import net.minecraft.world.item.SpawnEggItem;
 public class ModItems {
     public static final Item BLUB_SPAWN_EGG = Registry.register(
         BuiltInRegistries.ITEM,
-        ResourceLocation.parse("sift:blub_spawn_egg"),
+        new ResourceLocation("sift", "blub_spawn_egg"),
         new SpawnEggItem(ModEntities.BLUB, 0x4CB5DF, 0x23214B, new Item.Properties())
     );
 
