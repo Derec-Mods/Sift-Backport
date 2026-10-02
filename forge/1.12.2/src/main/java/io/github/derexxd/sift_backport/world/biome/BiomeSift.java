@@ -2,6 +2,7 @@ package io.github.derexxd.sift_backport.world.biome;
 
 import io.github.derexxd.sift_backport.Siftbackport;
 import net.minecraft.init.Blocks;
+import io.github.derexxd.sift_backport.block.ModBlocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.relauncher.Side;
@@ -20,8 +21,8 @@ public class BiomeSift extends Biome {
 
         setRegistryName(Siftbackport.MODID, "sift");
 
-        this.topBlock = Blocks.STONE.getDefaultState();
-        this.fillerBlock = Blocks.STONE.getDefaultState();
+        this.topBlock = ModBlocks.SCULK_GRASS_BLOCK.getDefaultState();
+        this.fillerBlock = ModBlocks.SCULK_GRASS_BLOCK.getDefaultState();
 
         this.spawnableMonsterList.clear();
         this.spawnableCreatureList.clear();

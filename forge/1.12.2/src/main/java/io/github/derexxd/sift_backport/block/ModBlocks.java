@@ -4,6 +4,8 @@ import io.github.derexxd.sift_backport.Siftbackport;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockDoublePlant;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -36,6 +38,12 @@ public class ModBlocks {
             this.setTranslationKey("sift_backport." + name);
             this.setCreativeTab(CreativeTabs.DECORATIONS);
         }
+
+        @Override
+        protected boolean canSustainBush(IBlockState state) {
+            Block block = state.getBlock();
+            return block == SCULK_GRASS_BLOCK || block == LIGHT_SCULK_GRASS_BLOCK || block == Blocks.GRASS || block == Blocks.DIRT || block == Blocks.FARMLAND;
+        }
     }
 
     public static class BlockTallSculk extends BlockDoublePlant {
@@ -45,6 +53,12 @@ public class ModBlocks {
             this.setRegistryName(name);
             this.setTranslationKey("sift_backport." + name);
             this.setCreativeTab(CreativeTabs.DECORATIONS);
+        }
+
+        @Override
+        protected boolean canSustainBush(IBlockState state) {
+            Block block = state.getBlock();
+            return block == SCULK_GRASS_BLOCK || block == LIGHT_SCULK_GRASS_BLOCK || block == Blocks.GRASS || block == Blocks.DIRT || block == Blocks.FARMLAND;
         }
     }
 

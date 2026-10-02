@@ -1,6 +1,9 @@
 package io.github.derexxd.sift_backport.world.gen;
 
 import io.github.derexxd.sift_backport.world.biome.ModBiomes;
+import io.github.derexxd.sift_backport.block.ModBlocks;
+import net.minecraft.block.BlockDoublePlant;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -51,15 +54,25 @@ public class ChunkGeneratorSift implements IChunkGenerator {
                 int height = (int) (baseHeight + noiseVal * 16.0D);
                 height = Math.max(10, Math.min(240, height));
 
-                // Fill stone from bedrock up to height
-                for (int y = 1; y < height; ++y) {
+                IBlockState topState = ModBiomes.SIFT_BIOME.topBlock;
+                IBlockState fillerState = ModBiomes.SIFT_BIOME.fillerBlock;
+                IBlockState baseState = Blocks.CONCRETE.getStateFromMeta(7);
+
+                for (int y = 1; y <= height; ++y) {
                     if (primer.getBlockState(localX, y, localZ).getBlock() != Blocks.BEDROCK) {
-                        primer.setBlockState(localX, y, localZ, Blocks.STONE.getDefaultState());
+                        if (y == height) {
+                            if (this.rand.nextFloat() < 0.15F) {
+                                primer.setBlockState(localX, y, localZ, ModBlocks.LIGHT_SCULK_GRASS_BLOCK.getDefaultState());
+                            } else {
+                                primer.setBlockState(localX, y, localZ, topState);
+                            }
+                        } else if (y >= height - 3) {
+                            primer.setBlockState(localX, y, localZ, fillerState);
+                        } else {
+                            primer.setBlockState(localX, y, localZ, baseState);
+                        }
                     }
                 }
-
-                // Surface layer
-                primer.setBlockState(localX, height, localZ, ModBiomes.SIFT_BIOME.topBlock);
             }
         }
 
@@ -76,7 +89,24 @@ public class ChunkGeneratorSift implements IChunkGenerator {
 
     @Override
     public void populate(int x, int z) {
-        // Biome decoration / feature generation can hook here
+        int worldX = x * 16;
+        int worldZ = z * 16;
+        BlockPos blockpos = new BlockPos(worldX, 0, worldZ);
+
+        for (int i = 0; i < 4; ++i) {
+            int rx = this.rand.nextInt(16) + 8;
+            int rz = this.rand.nextInt(16) + 8;
+            BlockPos pos = this.world.getTopSolidOrLiquidBlock(blockpos.add(rx, 0, rz));
+
+            if (this.world.isAirBlock(pos) && ModBlocks.SCULK_GRASS.canPlaceBlockAt(this.world, pos)) {
+                if (this.rand.nextInt(3) == 0 && this.world.isAirBlock(pos.up())) {
+                    this.world.setBlockState(pos, ModBlocks.TALL_SCULK_GRASS.getDefaultState().withProperty(BlockDoublePlant.HALF, BlockDoublePlant.EnumBlockHalf.LOWER), 2);
+                    this.world.setBlockState(pos.up(), ModBlocks.TALL_SCULK_GRASS.getDefaultState().withProperty(BlockDoublePlant.HALF, BlockDoublePlant.EnumBlockHalf.UPPER), 2);
+                } else {
+                    this.world.setBlockState(pos, ModBlocks.SCULK_GRASS.getDefaultState(), 2);
+                }
+            }
+        }
     }
 
     @Override
