@@ -21,13 +21,45 @@ public class Siftbackport {
 
     public Siftbackport(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
+        
+        io.github.derexxd.sift_backport.block.ModBlocks.BLOCKS.register(modEventBus);
+        io.github.derexxd.sift_backport.item.ModItems.ITEMS.register(modEventBus);
+        io.github.derexxd.sift_backport.entity.ModEntities.ENTITY_TYPES.register(modEventBus);
+        
         NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.addListener(io.github.derexxd.sift_backport.command.SiftTeleportCommand::onRegisterCommands);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        
+        modEventBus.addListener(Siftbackport::addCreative);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         LOGGER.info("HELLO FROM SIFT COMMON SETUP");
+    }
+
+    private static void addCreative(net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == net.minecraft.world.item.CreativeModeTabs.SPAWN_EGGS) {
+            event.accept(io.github.derexxd.sift_backport.item.ModItems.BLUB_SPAWN_EGG);
+        }
+        if (event.getTabKey() == net.minecraft.world.item.CreativeModeTabs.NATURAL_BLOCKS) {
+            event.accept(io.github.derexxd.sift_backport.block.ModBlocks.SCULK_GRASS_BLOCK);
+            event.accept(io.github.derexxd.sift_backport.block.ModBlocks.LIGHT_SCULK_GRASS_BLOCK);
+            event.accept(io.github.derexxd.sift_backport.block.ModBlocks.SCULK_GRASS);
+            event.accept(io.github.derexxd.sift_backport.block.ModBlocks.TALL_SCULK_GRASS);
+        }
+    }
+
+    @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD)
+    public static class ModEventBusEvents {
+        @SubscribeEvent
+        public static void entityAttributeEvent(net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent event) {
+            event.put(io.github.derexxd.sift_backport.entity.ModEntities.BLUB.get(), io.github.derexxd.sift_backport.entity.BlubEntity.createAttributes().build());
+        }
+
+        @SubscribeEvent
+        public static void registerSpawnPlacements(net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent event) {
+            event.register(io.github.derexxd.sift_backport.entity.ModEntities.BLUB.get(), net.minecraft.world.entity.SpawnPlacementTypes.ON_GROUND, net.minecraft.world.level.levelgen.Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, io.github.derexxd.sift_backport.entity.BlubEntity::checkBlubSpawnRules, net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent.Operation.REPLACE);
+        }
     }
 
     @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -35,6 +67,16 @@ public class Siftbackport {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             LOGGER.info("HELLO FROM SIFT CLIENT SETUP");
+        }
+
+        @SubscribeEvent
+        public static void registerRenderers(net.neoforged.neoforge.client.event.EntityRenderersEvent.RegisterRenderers event) {
+            event.registerEntityRenderer(io.github.derexxd.sift_backport.entity.ModEntities.BLUB.get(), io.github.derexxd.sift_backport.client.renderer.BlubRenderer::new);
+        }
+
+        @SubscribeEvent
+        public static void registerLayerDefinitions(net.neoforged.neoforge.client.event.EntityRenderersEvent.RegisterLayerDefinitions event) {
+            event.registerLayerDefinition(io.github.derexxd.sift_backport.client.model.BlubModel.LAYER_LOCATION, io.github.derexxd.sift_backport.client.model.BlubModel::createBodyLayer);
         }
 
         @SubscribeEvent
