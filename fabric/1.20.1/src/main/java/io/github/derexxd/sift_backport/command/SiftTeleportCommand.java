@@ -12,11 +12,13 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.RelativeMovement;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.Heightmap;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Set;
 
 public class SiftTeleportCommand {
 
@@ -72,7 +74,8 @@ public class SiftTeleportCommand {
             double y = topPos.getY();
 
 
-            player.teleportTo(targetLevel, x + 0.5, y + 1.0, z + 0.5, player.getYRot(), 0.0F);
+            Set<RelativeMovement> relatives = Collections.emptySet();
+            player.teleportTo(targetLevel, x + 0.5, y + 1.0, z + 0.5, relatives, player.getYRot(), 0.0F);
         }
 
         return targets.size();
