@@ -17,6 +17,7 @@ import net.minecraft.world.level.levelgen.Heightmap;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Set;
 
 public class SiftTeleportCommand {
 
@@ -68,7 +69,7 @@ public class SiftTeleportCommand {
 
             double x = player.getX();
             double z = player.getZ();
-            BlockPos topPos = targetLevel.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, new BlockPos(x, 0, z));
+            BlockPos topPos = targetLevel.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, new BlockPos((int) x, 0, (int) z));
             double y = topPos.getY();
 
 

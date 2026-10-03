@@ -2,10 +2,35 @@
   "type": "sift:sift",
   "generator": {
     "type": "minecraft:noise",
-    "settings": "minecraft:overworld",
+    "settings": "sift:sift",
     "biome_source": {
-      "type": "minecraft:fixed",
-      "biome": "sift:sift"
+      "type": "minecraft:multi_noise",
+      "biomes": [
+        {
+          "biome": "sift:sift",
+          "parameters": {
+            "temperature": 0.0,
+            "humidity": 0.0,
+            "continentalness": -0.5,
+            "erosion": 0.0,
+            "depth": 0.0,
+            "weirdness": 0.0,
+            "offset": 0.0
+          }
+        },
+        {
+          "biome": "sift:sift_floating_islands",
+          "parameters": {
+            "temperature": 0.0,
+            "humidity": 0.0,
+            "continentalness": 0.6,
+            "erosion": 0.0,
+            "depth": 0.0,
+            "weirdness": 0.0,
+            "offset": 0.0
+          }
+        }
+      ]
     }
   }
 }

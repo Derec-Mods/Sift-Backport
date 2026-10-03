@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "sift:tall_sculk_grass_bottom"
+    },
+    "half=upper": {
+      "model": "sift:tall_sculk_grass_top"
+    }
+  }
+}

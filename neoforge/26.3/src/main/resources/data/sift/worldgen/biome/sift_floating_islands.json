@@ -1,0 +1,43 @@
+{
+  "attributes": {
+    "minecraft:visual/fog_color": "#6ee1d3",
+    "minecraft:visual/sky_color": "#6ee1d3",
+    "minecraft:visual/water_fog_color": "#6ee1d3"
+  },
+  "has_precipitation": false,
+  "temperature": 0.5,
+  "downfall": 0.5,
+  "effects": {
+    "foliage_color": "#e8aeff",
+    "grass_color": "#f0717d",
+    "water_color": "#6ee1d3"
+  },
+  "carvers": [],
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "sift:floating_island_vines",
+      "sift:tall_sculk_grass",
+      "sift:sculk_grass"
+    ]
+  ],
+  "spawners": {
+    "creature": [
+      {
+        "type": "sift:blub",
+        "weight": 10,
+        "minCount": 2,
+        "maxCount": 4
+      }
+    ]
+  },
+  "spawn_costs": {}
+}

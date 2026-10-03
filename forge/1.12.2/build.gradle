@@ -14,11 +14,22 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'maven-publish'
 
-version = '1.0.0.1'
+version = '1.0.3.0'
 group = 'io.github.derexxd' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'Sift-Backport'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+
+sourceSets {
+    main {
+        output.resourcesDir = file('build/classes/java/main')
+        resources {
+            srcDir 'src/main/resources'
+            srcDir '../../shared'
+            exclude 'assets/screenshots/**'
+        }
+    }
+}
 
 minecraft {
     // The mappings can be changed at any time, and must be in the following format.
@@ -43,15 +54,28 @@ minecraft {
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
+
+            mods {
+                sift {
+                    source sourceSets.main
+                }
+            }
         }
 
         server {
-
+            workingDirectory project.file('run')
+            
             // Recommended logging data for a userdev environment
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
+
+            mods {
+                sift {
+                    source sourceSets.main
+                }
+            }
         }
     }
 }
@@ -123,4 +147,9 @@ task buildToJar(dependsOn: 'build') {
     description = 'Compiles and packages the obfuscated mod JAR into build/libs'
 }
 
-
+processResources {
+    from(project.file("../../shared")) {
+        include "assets/**/*.png"
+        exclude "assets/screenshots/**"
+    }
+}

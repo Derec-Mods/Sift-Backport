@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "sift:sculk_grass_block",
+    "sift:light_sculk_grass_block"
+  ]
+}
