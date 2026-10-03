@@ -20,16 +20,39 @@
         "Name": "sift:sculk_grass_block"
       },
       "under_material": {
-        "Name": "minecraft:dirt"
+        "Name": "sift:sculk_grass_block"
       },
       "underwater_material": {
-        "Name": "minecraft:dirt"
+        "Name": "sift:sculk_grass_block"
       }
     }
   },
   "carvers": {},
-  "features": [],
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "sift:tall_sculk_grass",
+      "sift:sculk_grass"
+    ],
+    []
+  ],
   "starts": [],
-  "spawners": {},
+  "spawners": {
+    "creature": [
+      {
+        "type": "sift:blub",
+        "weight": 10,
+        "minCount": 2,
+        "maxCount": 4
+      }
+    ]
+  },
   "spawn_costs": {}
 }
