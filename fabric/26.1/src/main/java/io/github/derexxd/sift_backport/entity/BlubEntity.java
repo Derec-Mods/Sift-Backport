@@ -5,8 +5,8 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -33,7 +33,7 @@ public class BlubEntity extends PathfinderMob {
             .add(Attributes.MOVEMENT_SPEED, 0.2D);
     }
 
-    public static boolean checkBlubSpawnRules(EntityType<BlubEntity> type, ServerLevelAccessor level, MobSpawnType reason, BlockPos pos, RandomSource random) {
+    public static boolean checkBlubSpawnRules(EntityType<BlubEntity> type, ServerLevelAccessor level, EntitySpawnReason reason, BlockPos pos, RandomSource random) {
         return !level.getBlockState(pos.below()).isAir();
     }
 
