@@ -19,6 +19,10 @@
       "can_set_spawn": "always",
       "can_sleep": "when_dark"
     },
-    "minecraft:gameplay/respawn_anchor_works": false
+    "minecraft:gameplay/respawn_anchor_works": false,
+    "minecraft:visual/ambient_light_color": "#0a0a0a",
+    "minecraft:visual/fog_color": "#6ee1d3",
+    "minecraft:visual/sky_color": "#6ee1d3",
+    "minecraft:visual/cloud_color": "#00000000"
   }
 }
