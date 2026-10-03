@@ -24,7 +24,7 @@ public class SiftTeleportCommand {
 
     public static final ResourceKey<Level> SIFT_DIMENSION_KEY = ResourceKey.create(
             Registries.DIMENSION,
-            new ResourceLocation("sift", "sift")
+            ResourceLocation.parse("sift:sift")
     );
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {

@@ -9,14 +9,14 @@ $projects = @{
     "fabric/1.20.1"   = "1.20.1"
     "forge/1.20.1"    = "1.20.1"
     "neoforge/1.20.1" = "1.20.1"
-    "fabric/26.1"     = "1.20.1"
-    "fabric/26.2"     = "1.20.1"
-    "fabric/26.3"     = "1.20.1"
+    "fabric/26.1"     = "26.1"
+    "fabric/26.2"     = "26.2"
+    "fabric/26.3"     = "26.3"
     "fabric/1.21.1"   = "1.21.1"
     "neoforge/1.21.1" = "1.21.1"
-    "neoforge/26.1"   = "1.21.1"
-    "neoforge/26.2"   = "1.21.1"
-    "neoforge/26.3"   = "1.21.1"
+    "neoforge/26.1"   = "26.1"
+    "neoforge/26.2"   = "26.2"
+    "neoforge/26.3"   = "26.3"
 }
 
 $errors = [System.Collections.Generic.List[string]]::new()

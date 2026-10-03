@@ -1,6 +1,7 @@
 {
   "pack": {
     "description": "siftbackport resources",
-    "pack_format": 32
+    "min_format": 84,
+    "max_format": 84
   }
 }
