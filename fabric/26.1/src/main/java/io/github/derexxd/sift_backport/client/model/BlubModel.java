@@ -1,6 +1,6 @@
 package io.github.derexxd.sift_backport.client.model;
 
-import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -8,16 +8,15 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
 
-public class BlubModel<T extends Entity> extends HierarchicalModel<T> {
+public class BlubModel extends EntityModel<LivingEntityRenderState> {
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(
-        ResourceLocation.fromNamespaceAndPath("sift", "blub"), "main"
+        Identifier.fromNamespaceAndPath("sift", "blub"), "main"
     );
 
-    private final ModelPart root;
     private final ModelPart body;
     private final ModelPart leftHand;
     private final ModelPart rightHand;
@@ -27,7 +26,7 @@ public class BlubModel<T extends Entity> extends HierarchicalModel<T> {
     private final ModelPart rightEar;
 
     public BlubModel(ModelPart root) {
-        this.root = root;
+        super(root);
         this.body = root.getChild("body");
         this.leftHand = root.getChild("left_hand");
         this.rightHand = root.getChild("right_hand");
@@ -74,8 +73,14 @@ public class BlubModel<T extends Entity> extends HierarchicalModel<T> {
     }
 
     @Override
-    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.root().getAllParts().forEach(ModelPart::resetPose);
+    public void setupAnim(LivingEntityRenderState renderState) {
+        super.setupAnim(renderState);
+        this.resetPose();
+
+        float limbSwing = renderState.walkAnimationPos;
+        float limbSwingAmount = renderState.walkAnimationSpeed;
+        float ageInTicks = renderState.ageScale;
+        float netHeadYaw = renderState.yRot;
 
         this.leftHand.xRot = Mth.cos(limbSwing * 0.6662F) * 1.2F * limbSwingAmount;
         this.rightHand.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.2F * limbSwingAmount;
@@ -87,10 +92,5 @@ public class BlubModel<T extends Entity> extends HierarchicalModel<T> {
 
         this.leftEar.zRot = Mth.sin(ageInTicks * 0.1F) * 0.08F + (Mth.cos(limbSwing * 0.6662F) * 0.2F * limbSwingAmount);
         this.rightEar.zRot = -Mth.sin(ageInTicks * 0.1F) * 0.08F - (Mth.cos(limbSwing * 0.6662F) * 0.2F * limbSwingAmount);
-    }
-
-    @Override
-    public ModelPart root() {
-        return this.root;
     }
 }
