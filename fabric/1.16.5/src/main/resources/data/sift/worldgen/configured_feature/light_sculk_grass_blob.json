@@ -1,0 +1,44 @@
+{
+  "type": "minecraft:decorated",
+  "config": {
+    "feature": {
+      "type": "minecraft:decorated",
+      "config": {
+        "feature": {
+          "type": "minecraft:decorated",
+          "config": {
+            "feature": {
+              "type": "minecraft:netherrack_replace_blobs",
+              "config": {
+                "target": {
+                  "Name": "sift:sculk_grass_block"
+                },
+                "state": {
+                  "Name": "sift:light_sculk_grass_block"
+                },
+                "radius": {
+                  "base": 3,
+                  "spread": 2
+                }
+              }
+            },
+            "decorator": {
+              "type": "minecraft:square",
+              "config": {}
+            }
+          }
+        },
+        "decorator": {
+          "type": "minecraft:top_solid_heightmap",
+          "config": {}
+        }
+      }
+    },
+    "decorator": {
+      "type": "minecraft:count",
+      "config": {
+        "count": 10
+      }
+    }
+  }
+}

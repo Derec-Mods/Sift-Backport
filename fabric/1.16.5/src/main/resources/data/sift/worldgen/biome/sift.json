@@ -23,7 +23,7 @@
         "Name": "sift:sculk_grass_block"
       },
       "underwater_material": {
-        "Name": "sift:sculk_grass_block"
+        "Name": "minecraft:gray_concrete"
       }
     }
   },
@@ -36,7 +36,9 @@
     [],
     [],
     [],
-    [],
+    [
+      "sift:light_sculk_grass_blob"
+    ],
     [
       "sift:tall_sculk_grass",
       "sift:sculk_grass"
