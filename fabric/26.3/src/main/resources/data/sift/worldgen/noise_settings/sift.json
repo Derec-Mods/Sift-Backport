@@ -32,6 +32,7 @@
     "erosion": 0,
     "depth": 0,
     "ridges": 0,
+    "preliminary_surface_level": 0.0,
     "initial_density_without_jaggedness": {
       "type": "minecraft:range_choice",
       "input": {

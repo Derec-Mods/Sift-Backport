@@ -1,5 +1,5 @@
 {
-  "firstOctave": -5,
+  "base_octave": -5,
   "amplitudes": [
     1.0,
     0.5,

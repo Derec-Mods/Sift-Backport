@@ -30,7 +30,8 @@ public class BlubEntity extends PathfinderMob {
     public static AttributeSupplier.Builder createAttributes() {
         return PathfinderMob.createMobAttributes()
             .add(Attributes.MAX_HEALTH, 10.0D)
-            .add(Attributes.MOVEMENT_SPEED, 0.2D);
+            .add(Attributes.MOVEMENT_SPEED, 0.2D)
+            .add(Attributes.TEMPT_RANGE, 10.0D);
     }
 
     public static boolean checkBlubSpawnRules(EntityType<BlubEntity> type, ServerLevelAccessor level, EntitySpawnReason reason, BlockPos pos, RandomSource random) {
