@@ -1,7 +1,10 @@
 {
-  "has_precipitation": false,
+  "precipitation": "none",
   "temperature": 0.5,
   "downfall": 0.5,
+  "category": "none",
+  "depth": 0.125,
+  "scale": 0.05,
   "effects": {
     "fog_color": 16758706,
     "sky_color": 6477255,
@@ -10,8 +13,23 @@
     "grass_color": 15757693,
     "foliage_color": 15249151
   },
+  "surface_builder": {
+    "type": "minecraft:default",
+    "config": {
+      "top_material": {
+        "Name": "sift:sculk_grass_block"
+      },
+      "under_material": {
+        "Name": "minecraft:dirt"
+      },
+      "underwater_material": {
+        "Name": "minecraft:dirt"
+      }
+    }
+  },
   "carvers": {},
   "features": [],
+  "starts": [],
   "spawners": {},
   "spawn_costs": {}
 }
