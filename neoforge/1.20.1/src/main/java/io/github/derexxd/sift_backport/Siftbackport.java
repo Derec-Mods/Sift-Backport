@@ -70,6 +70,10 @@ public class Siftbackport {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             LOGGER.info("HELLO FROM SIFT CLIENT SETUP");
+            event.enqueueWork(() -> {
+                net.minecraft.client.renderer.ItemBlockRenderTypes.setRenderLayer(io.github.derexxd.sift_backport.block.ModBlocks.SCULK_GRASS.get(), net.minecraft.client.renderer.RenderType.cutout());
+                net.minecraft.client.renderer.ItemBlockRenderTypes.setRenderLayer(io.github.derexxd.sift_backport.block.ModBlocks.TALL_SCULK_GRASS.get(), net.minecraft.client.renderer.RenderType.cutout());
+            });
         }
 
         @SubscribeEvent

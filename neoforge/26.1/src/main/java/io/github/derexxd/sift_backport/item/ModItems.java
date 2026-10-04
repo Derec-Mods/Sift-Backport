@@ -8,7 +8,7 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModItems {
-    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Siftbackport.MODID);
+    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems("sift");
 
     public static final DeferredItem<Item> BLUB_SPAWN_EGG = ITEMS.register("blub_spawn_egg",
         () -> new DeferredSpawnEggItem(ModEntities.BLUB, 0x4CB5DF, 0x23214B, new Item.Properties())
