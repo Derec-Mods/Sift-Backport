@@ -3,6 +3,7 @@
 .vscode/
 temp/
 temporary/
+.eclipse/
 *.iml
 *.ipr
 *.iws
