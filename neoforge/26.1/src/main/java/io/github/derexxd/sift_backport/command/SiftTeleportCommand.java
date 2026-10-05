@@ -8,11 +8,12 @@ import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.RelativeMovement;
+import net.minecraft.server.permissions.Permissions;
+import net.minecraft.world.entity.Relative;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
@@ -25,7 +26,7 @@ public class SiftTeleportCommand {
 
     public static final ResourceKey<Level> SIFT_DIMENSION_KEY = ResourceKey.create(
             Registries.DIMENSION,
-            ResourceLocation.parse("sift:sift")
+            Identifier.parse("sift:sift")
     );
 
     public static void onRegisterCommands(RegisterCommandsEvent event) {
@@ -37,7 +38,7 @@ public class SiftTeleportCommand {
             Commands.literal("siftteleport")
                 .executes(context -> teleportPlayers(context.getSource(), Collections.singleton(context.getSource().getPlayerOrException())))
                 .then(Commands.argument("targets", EntityArgument.players())
-                    .requires(source -> source.hasPermission(2))
+                    .requires(source -> source.permissions().hasPermission(Permissions.COMMANDS_GAMEMASTER))
                     .executes(context -> teleportPlayers(context.getSource(), EntityArgument.getPlayers(context, "targets")))
                 )
         );
@@ -45,7 +46,7 @@ public class SiftTeleportCommand {
             Commands.literal("sifttp")
                 .executes(context -> teleportPlayers(context.getSource(), Collections.singleton(context.getSource().getPlayerOrException())))
                 .then(Commands.argument("targets", EntityArgument.players())
-                    .requires(source -> source.hasPermission(2))
+                    .requires(source -> source.permissions().hasPermission(Permissions.COMMANDS_GAMEMASTER))
                     .executes(context -> teleportPlayers(context.getSource(), EntityArgument.getPlayers(context, "targets")))
                 )
         );
@@ -59,13 +60,12 @@ public class SiftTeleportCommand {
         }
 
         for (ServerPlayer player : targets) {
-            player.displayClientMessage(
+            player.sendSystemMessage(
                 Component.literal("This is a band aid for now as we debug and work on this, barely anything is officially announced yet")
-                    .withStyle(ChatFormatting.YELLOW),
-                false
+                    .withStyle(ChatFormatting.YELLOW)
             );
 
-            ServerLevel targetLevel = (player.serverLevel().dimension().equals(SIFT_DIMENSION_KEY))
+            ServerLevel targetLevel = (player.level().dimension().equals(SIFT_DIMENSION_KEY))
                     ? source.getServer().getLevel(Level.OVERWORLD)
                     : siftLevel;
 
@@ -78,9 +78,8 @@ public class SiftTeleportCommand {
             BlockPos topPos = targetLevel.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, new BlockPos((int) x, 0, (int) z));
             double y = topPos.getY();
 
-
-            Set<RelativeMovement> relatives = Collections.emptySet();
-            player.teleportTo(targetLevel, x + 0.5, y + 1.0, z + 0.5, relatives, player.getYRot(), 0.0F);
+            Set<Relative> relatives = Collections.emptySet();
+            player.teleportTo(targetLevel, x + 0.5, y + 1.0, z + 0.5, relatives, player.getYRot(), 0.0F, true);
         }
 
         return targets.size();

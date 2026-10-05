@@ -21,6 +21,6 @@ public class TallSculkGrassBlock extends DoublePlantBlock {
 
     @Override
     protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
-        return state.is(ModBlocks.SCULK_GRASS_BLOCK) || state.is(ModBlocks.LIGHT_SCULK_GRASS_BLOCK) || super.mayPlaceOn(state, level, pos);
+        return state.is(ModBlocks.SCULK_GRASS_BLOCK.get()) || state.is(ModBlocks.LIGHT_SCULK_GRASS_BLOCK.get()) || super.mayPlaceOn(state, level, pos);
     }
 }
