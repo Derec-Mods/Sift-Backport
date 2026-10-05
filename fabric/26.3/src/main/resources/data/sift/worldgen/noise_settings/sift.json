@@ -2,8 +2,12 @@
   "sea_level": 0,
   "disable_mob_generation": false,
   "legacy_random_source": false,
-  "default_block": "minecraft:gray_concrete",
-  "default_fluid": "minecraft:air",
+  "default_block": {
+    "Name": "minecraft:gray_concrete"
+  },
+  "default_fluid": {
+    "Name": "minecraft:air"
+  },
   "material_rule": "sift:sift",
   "noise": {
     "height": 256,

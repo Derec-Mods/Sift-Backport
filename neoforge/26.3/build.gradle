@@ -21,6 +21,7 @@ neoForge {
         client {
             client()
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+            jvmArguments = ['-Xmx4G', '-Xms2G', '-XX:+UseG1GC']
         }
 
         server {

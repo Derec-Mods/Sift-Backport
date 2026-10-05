@@ -26,7 +26,6 @@ public class Siftbackport {
         io.github.derexxd.sift_backport.item.ModItems.ITEMS.register(modEventBus);
         io.github.derexxd.sift_backport.entity.ModEntities.ENTITY_TYPES.register(modEventBus);
         
-        NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.addListener(io.github.derexxd.sift_backport.command.SiftTeleportCommand::onRegisterCommands);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
         

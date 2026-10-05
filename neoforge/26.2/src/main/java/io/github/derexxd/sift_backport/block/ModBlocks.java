@@ -1,6 +1,9 @@
 package io.github.derexxd.sift_backport.block;
 
 import io.github.derexxd.sift_backport.item.ModItems;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DoubleHighBlockItem;
 import net.minecraft.world.item.Item;
@@ -12,50 +15,64 @@ import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.util.function.Supplier;
+import java.util.function.Function;
 
 public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks("sift");
 
     public static final DeferredBlock<Block> SCULK_GRASS_BLOCK = registerBlock("sculk_grass_block",
-            () -> new Block(BlockBehaviour.Properties.of()
+            Block::new,
+            BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_ORANGE)
                     .strength(0.6F)
-                    .sound(SoundType.SCULK)));
+                    .sound(SoundType.SCULK));
 
     public static final DeferredBlock<Block> LIGHT_SCULK_GRASS_BLOCK = registerBlock("light_sculk_grass_block",
-            () -> new Block(BlockBehaviour.Properties.of()
+            Block::new,
+            BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_PINK)
                     .strength(0.6F)
-                    .sound(SoundType.SCULK)));
+                    .sound(SoundType.SCULK));
 
     public static final DeferredBlock<Block> SCULK_GRASS = registerBlock("sculk_grass",
-            () -> new SculkGrassBlock(BlockBehaviour.Properties.of()
+            SculkGrassBlock::new,
+            BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_PINK)
-                    .noCollission()
+                    .noCollision()
                     .instabreak()
                     .sound(SoundType.GRASS)
                     .offsetType(BlockBehaviour.OffsetType.XYZ)
-                    .pushReaction(PushReaction.DESTROY)));
+                    .pushReaction(PushReaction.DESTROY));
 
     public static final DeferredBlock<Block> TALL_SCULK_GRASS = registerDoublePlantBlock("tall_sculk_grass",
-            () -> new TallSculkGrassBlock(BlockBehaviour.Properties.of()
+            TallSculkGrassBlock::new,
+            BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_PINK)
-                    .noCollission()
+                    .noCollision()
                     .instabreak()
                     .sound(SoundType.GRASS)
                     .offsetType(BlockBehaviour.OffsetType.XZ)
-                    .pushReaction(PushReaction.DESTROY)));
+                    .pushReaction(PushReaction.DESTROY));
 
-    private static DeferredBlock<Block> registerBlock(String name, Supplier<Block> block) {
-        DeferredBlock<Block> toReturn = BLOCKS.register(name, block);
-        ModItems.ITEMS.register(name, () -> new BlockItem(toReturn.get(), new Item.Properties()));
+    private static DeferredBlock<Block> registerBlock(String name, Function<BlockBehaviour.Properties, Block> factory, BlockBehaviour.Properties properties) {
+        Identifier id = Identifier.parse("sift:" + name);
+        ResourceKey<Block> blockKey = ResourceKey.create(Registries.BLOCK, id);
+        ResourceKey<Item> itemKey = ResourceKey.create(Registries.ITEM, id);
+
+        properties.setId(blockKey);
+        DeferredBlock<Block> toReturn = BLOCKS.register(name, () -> factory.apply(properties));
+        ModItems.ITEMS.register(name, () -> new BlockItem(toReturn.get(), new Item.Properties().useBlockDescriptionPrefix().setId(itemKey)));
         return toReturn;
     }
 
-    private static DeferredBlock<Block> registerDoublePlantBlock(String name, Supplier<Block> block) {
-        DeferredBlock<Block> toReturn = BLOCKS.register(name, block);
-        ModItems.ITEMS.register(name, () -> new DoubleHighBlockItem(toReturn.get(), new Item.Properties()));
+    private static DeferredBlock<Block> registerDoublePlantBlock(String name, Function<BlockBehaviour.Properties, Block> factory, BlockBehaviour.Properties properties) {
+        Identifier id = Identifier.parse("sift:" + name);
+        ResourceKey<Block> blockKey = ResourceKey.create(Registries.BLOCK, id);
+        ResourceKey<Item> itemKey = ResourceKey.create(Registries.ITEM, id);
+
+        properties.setId(blockKey);
+        DeferredBlock<Block> toReturn = BLOCKS.register(name, () -> factory.apply(properties));
+        ModItems.ITEMS.register(name, () -> new DoubleHighBlockItem(toReturn.get(), new Item.Properties().useBlockDescriptionPrefix().setId(itemKey)));
         return toReturn;
     }
 }
