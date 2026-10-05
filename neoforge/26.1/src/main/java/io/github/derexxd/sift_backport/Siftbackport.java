@@ -38,7 +38,6 @@ public class Siftbackport {
         ModItems.ITEMS.register(modEventBus);
         ModEntities.ENTITY_TYPES.register(modEventBus);
 
-        NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.addListener(SiftTeleportCommand::onRegisterCommands);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 
