@@ -3,7 +3,6 @@ package io.github.derexxd.sift_backport.entity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
@@ -18,9 +17,12 @@ import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
+
+import java.util.Random;
 
 public class BlubEntity extends PathfinderMob {
     public BlubEntity(EntityType<? extends PathfinderMob> type, Level level) {
@@ -33,7 +35,7 @@ public class BlubEntity extends PathfinderMob {
             .add(Attributes.MOVEMENT_SPEED, 0.2D);
     }
 
-    public static boolean checkBlubSpawnRules(EntityType<BlubEntity> type, ServerLevelAccessor level, MobSpawnType reason, BlockPos pos, RandomSource random) {
+    public static boolean checkBlubSpawnRules(EntityType<BlubEntity> type, ServerLevelAccessor level, MobSpawnType reason, BlockPos pos, Random random) {
         return !level.getBlockState(pos.below()).isAir();
     }
 
@@ -41,7 +43,7 @@ public class BlubEntity extends PathfinderMob {
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.35D));
-        this.goalSelector.addGoal(2, new TemptGoal(this, 1.15D, stack -> stack.is(Items.SOUL_SAND), false));
+        this.goalSelector.addGoal(2, new TemptGoal(this, 1.15D, Ingredient.of(Items.SOUL_SAND), false));
         this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));

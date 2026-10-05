@@ -6,25 +6,23 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
+import net.minecraft.core.Registry;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.RelativeMovement;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.Heightmap;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Set;
 
 public class SiftTeleportCommand {
 
     public static final ResourceKey<Level> SIFT_DIMENSION_KEY = ResourceKey.create(
-            Registries.DIMENSION,
-            ResourceLocation.parse("sift:sift")
+            Registry.DIMENSION_REGISTRY,
+            new ResourceLocation("sift", "sift")
     );
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
@@ -49,18 +47,18 @@ public class SiftTeleportCommand {
     private static int teleportPlayers(CommandSourceStack source, Collection<ServerPlayer> targets) {
         ServerLevel siftLevel = source.getServer().getLevel(SIFT_DIMENSION_KEY);
         if (siftLevel == null) {
-            source.sendFailure(Component.literal("Sift dimension ('sift:sift') could not be found!"));
+            source.sendFailure(new TextComponent("Sift dimension ('sift:sift') could not be found!"));
             return 0;
         }
 
         for (ServerPlayer player : targets) {
             player.displayClientMessage(
-                Component.literal("This is a band aid for now as we debug and work on this, barely anything is officially announced yet")
+                new TextComponent("This is a band aid for now as we debug and work on this, barely anything is officially announced yet")
                     .withStyle(ChatFormatting.YELLOW),
                 false
             );
 
-            ServerLevel targetLevel = (player.serverLevel().dimension().equals(SIFT_DIMENSION_KEY))
+            ServerLevel targetLevel = (player.getLevel().dimension().equals(SIFT_DIMENSION_KEY))
                     ? source.getServer().getLevel(Level.OVERWORLD)
                     : siftLevel;
 
@@ -70,12 +68,10 @@ public class SiftTeleportCommand {
 
             double x = player.getX();
             double z = player.getZ();
-            BlockPos topPos = targetLevel.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, new BlockPos((int) x, 0, (int) z));
+            BlockPos topPos = targetLevel.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, new BlockPos(x, 0, z));
             double y = topPos.getY();
 
-
-            Set<RelativeMovement> relatives = Collections.emptySet();
-            player.teleportTo(targetLevel, x + 0.5, y + 1.0, z + 0.5, relatives, player.getYRot(), 0.0F);
+            player.teleportTo(targetLevel, x + 0.5, y + 1.0, z + 0.5, player.getYRot(), 0.0F);
         }
 
         return targets.size();

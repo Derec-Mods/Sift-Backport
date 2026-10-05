@@ -23,7 +23,7 @@ public class SiftbackportClient implements ClientModInitializer {
         EntityModelLayerRegistry.registerModelLayer(BlubModel.LAYER_LOCATION, BlubModel::createBodyLayer);
         EntityRendererRegistry.register(ModEntities.BLUB, BlubRenderer::new);
 
-        DimensionRenderingRegistry.registerDimensionEffects(ResourceLocation.parse("sift:sift"), new DimensionSpecialEffects(Float.NaN, true, DimensionSpecialEffects.SkyType.NORMAL, false, false) {
+        DimensionRenderingRegistry.registerDimensionEffects(new ResourceLocation("sift", "sift"), new DimensionSpecialEffects(Float.NaN, true, DimensionSpecialEffects.SkyType.NORMAL, false, false) {
             @Override
             public Vec3 getBrightnessDependentFogColor(Vec3 biomeFogColor, float daylight) {
                 return biomeFogColor.multiply(daylight * 0.94F + 0.06F, daylight * 0.94F + 0.06F, daylight * 0.91F + 0.09F);
@@ -35,4 +35,3 @@ public class SiftbackportClient implements ClientModInitializer {
         });
     }
 }
-

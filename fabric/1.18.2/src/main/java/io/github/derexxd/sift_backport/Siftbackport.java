@@ -5,7 +5,7 @@ import io.github.derexxd.sift_backport.command.SiftTeleportCommand;
 import io.github.derexxd.sift_backport.entity.ModEntities;
 import io.github.derexxd.sift_backport.item.ModItems;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,9 +19,8 @@ public class Siftbackport implements ModInitializer {
         ModBlocks.register();
         ModEntities.register();
         ModItems.register();
-        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+        CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
             SiftTeleportCommand.register(dispatcher);
         });
     }
 }
-

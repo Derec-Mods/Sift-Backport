@@ -7,7 +7,7 @@ import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
-import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -52,13 +52,13 @@ public class SiftTeleportCommand {
     private static int teleportPlayers(CommandSourceStack source, Collection<ServerPlayer> targets) {
         ServerLevel siftLevel = source.getServer().getLevel(SIFT_DIMENSION_KEY);
         if (siftLevel == null) {
-            source.sendFailure(Component.literal("Sift dimension ('sift:sift') could not be found!"));
+            source.sendFailure(new TextComponent("Sift dimension ('sift:sift') could not be found!"));
             return 0;
         }
 
         for (ServerPlayer player : targets) {
             player.displayClientMessage(
-                Component.literal("This is a band aid for now as we debug and work on this, barely anything is officially announced yet")
+                new TextComponent("This is a band aid for now as we debug and work on this, barely anything is officially announced yet")
                     .withStyle(ChatFormatting.YELLOW),
                 false
             );
@@ -75,7 +75,6 @@ public class SiftTeleportCommand {
             double z = player.getZ();
             BlockPos topPos = targetLevel.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, new BlockPos(x, 0, z));
             double y = topPos.getY();
-
 
             player.teleportTo(targetLevel, x + 0.5, y + 1.0, z + 0.5, player.getYRot(), 0.0F);
         }

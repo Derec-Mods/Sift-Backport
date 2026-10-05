@@ -14,7 +14,7 @@ import net.minecraft.world.entity.Entity;
 
 public class BlubModel<T extends Entity> extends HierarchicalModel<T> {
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(
-        ResourceLocation.fromNamespaceAndPath("sift", "blub"), "main"
+        new ResourceLocation("sift", "blub"), "main"
     );
 
     private final ModelPart root;
