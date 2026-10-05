@@ -28,15 +28,13 @@ public class ModBlocks {
             new SculkGrassBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_PINK)
                     .noCollission()
                     .instabreak()
-                    .sound(SoundType.GRASS)
-                    .offsetType(BlockBehaviour.OffsetType.XYZ)));
+                    .sound(SoundType.GRASS)));
 
     public static final Block TALL_SCULK_GRASS = registerDoublePlantBlock("tall_sculk_grass",
             new TallSculkGrassBlock(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT, MaterialColor.COLOR_PINK)
                     .noCollission()
                     .instabreak()
-                    .sound(SoundType.GRASS)
-                    .offsetType(BlockBehaviour.OffsetType.XZ)));
+                    .sound(SoundType.GRASS)));
 
     private static Block registerBlock(String name, Block block) {
         ResourceLocation id = new ResourceLocation("sift", name);

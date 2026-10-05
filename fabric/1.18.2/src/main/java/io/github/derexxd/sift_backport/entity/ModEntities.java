@@ -1,5 +1,6 @@
 package io.github.derexxd.sift_backport.entity;
 
+import io.github.derexxd.sift_backport.mixin.SpawnPlacementsInvoker;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
@@ -20,6 +21,6 @@ public class ModEntities {
 
     public static void register() {
         FabricDefaultAttributeRegistry.register(BLUB, BlubEntity.createAttributes());
-        SpawnPlacements.register(BLUB, SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, BlubEntity::checkBlubSpawnRules);
+        SpawnPlacementsInvoker.invokeRegister(BLUB, SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, BlubEntity::checkBlubSpawnRules);
     }
 }
