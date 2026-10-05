@@ -15,7 +15,6 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
@@ -39,7 +38,6 @@ public class Siftbackport {
         ModEntities.ENTITY_TYPES.register(modEventBus);
 
         NeoForge.EVENT_BUS.addListener(SiftTeleportCommand::onRegisterCommands);
-        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 
         modEventBus.addListener(Siftbackport::addCreative);
         modEventBus.addListener(ModEventBusEvents::entityAttributeEvent);

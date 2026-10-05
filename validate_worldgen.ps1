@@ -61,8 +61,9 @@ foreach ($kv in $projects.GetEnumerator()) {
     $noisePath = Join-Path $dataDir "worldgen/noise_settings/sift.json"
     if (Test-Path $noisePath) {
         $noise = Get-Content $noisePath -Raw | ConvertFrom-Json
-        if ($noise.default_block.Name -ne "minecraft:gray_concrete") {
-            $errors.Add("[$proj] noise_settings default_block is '$($noise.default_block.Name)' instead of 'minecraft:gray_concrete'")
+        $blockName = if ($noise.default_block -is [string]) { $noise.default_block } else { $noise.default_block.Name }
+        if ($blockName -ne "minecraft:gray_concrete") {
+            $errors.Add("[$proj] noise_settings default_block is '$blockName' instead of 'minecraft:gray_concrete'")
         }
     } else {
         $errors.Add("[$proj] Missing worldgen/noise_settings/sift.json")

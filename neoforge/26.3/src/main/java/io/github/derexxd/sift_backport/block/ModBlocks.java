@@ -42,7 +42,7 @@ public class ModBlocks {
                     .instabreak()
                     .sound(SoundType.GRASS)
                     .offsetType(BlockBehaviour.OffsetType.XYZ)
-                    .pushReaction(PushReaction.DESTROY));
+                    .pushReaction(PushReaction.POPPED));
 
     public static final DeferredBlock<Block> TALL_SCULK_GRASS = registerDoublePlantBlock("tall_sculk_grass",
             TallSculkGrassBlock::new,
@@ -52,7 +52,7 @@ public class ModBlocks {
                     .instabreak()
                     .sound(SoundType.GRASS)
                     .offsetType(BlockBehaviour.OffsetType.XZ)
-                    .pushReaction(PushReaction.DESTROY));
+                    .pushReaction(PushReaction.POPPED));
 
     private static DeferredBlock<Block> registerBlock(String name, Function<BlockBehaviour.Properties, Block> factory, BlockBehaviour.Properties properties) {
         Identifier id = Identifier.parse("sift:" + name);
