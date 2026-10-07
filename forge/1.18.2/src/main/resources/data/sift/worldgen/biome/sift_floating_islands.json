@@ -1,5 +1,6 @@
 {
   "precipitation": "none",
+  "category": "none",
   "temperature": 0.5,
   "downfall": 0.5,
   "effects": {
@@ -25,7 +26,8 @@
       "sift:floating_island_vines",
       "sift:tall_sculk_grass",
       "sift:sculk_grass"
-    ]
+    ],
+    []
   ],
   "spawners": {
     "creature": [

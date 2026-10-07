@@ -14,6 +14,11 @@ public class TallSculkGrassBlock extends DoublePlantBlock {
         super(properties);
     }
 
+    @Override
+    public BlockBehaviour.OffsetType getOffsetType() {
+        return BlockBehaviour.OffsetType.XZ;
+    }
+
     
 
     @Override

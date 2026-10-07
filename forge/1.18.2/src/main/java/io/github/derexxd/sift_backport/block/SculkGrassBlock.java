@@ -14,6 +14,11 @@ public class SculkGrassBlock extends BushBlock {
         super(properties);
     }
 
+    @Override
+    public BlockBehaviour.OffsetType getOffsetType() {
+        return BlockBehaviour.OffsetType.XYZ;
+    }
+
     
 
     @Override
