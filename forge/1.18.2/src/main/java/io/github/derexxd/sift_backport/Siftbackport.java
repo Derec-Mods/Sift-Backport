@@ -27,7 +27,11 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import org.slf4j.Logger;
+
+import java.lang.reflect.Field;
+import java.util.Map;
 
 @Mod(Siftbackport.MODID)
 public class Siftbackport {
@@ -69,22 +73,42 @@ public class Siftbackport {
 
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
+        @SuppressWarnings("unchecked")
+        private static Map<ResourceLocation, DimensionSpecialEffects> getEffectsMap() {
+            try {
+                Field field;
+                try {
+                    field = ObfuscationReflectionHelper.findField(DimensionSpecialEffects.class, "f_108857_");
+                } catch (Exception e) {
+                    field = DimensionSpecialEffects.class.getDeclaredField("EFFECTS");
+                }
+                field.setAccessible(true);
+                return (Map<ResourceLocation, DimensionSpecialEffects>) field.get(null);
+            } catch (Exception e) {
+                LOGGER.error("Failed to access DimensionSpecialEffects.EFFECTS", e);
+                return null;
+            }
+        }
+
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             LOGGER.info("HELLO FROM SIFT CLIENT SETUP");
             event.enqueueWork(() -> {
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.SCULK_GRASS.get(), RenderType.cutout());
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.TALL_SCULK_GRASS.get(), RenderType.cutout());
-                DimensionSpecialEffects.EFFECTS.put(new ResourceLocation("sift", "sift"), new DimensionSpecialEffects(Float.NaN, true, DimensionSpecialEffects.SkyType.NORMAL, false, false) {
-                    @Override
-                    public Vec3 getBrightnessDependentFogColor(Vec3 biomeFogColor, float daylight) {
-                        return biomeFogColor.multiply(daylight * 0.94F + 0.06F, daylight * 0.94F + 0.06F, daylight * 0.91F + 0.09F);
-                    }
-                    @Override
-                    public boolean isFoggyAt(int x, int y) {
-                        return false;
-                    }
-                });
+                Map<ResourceLocation, DimensionSpecialEffects> effects = getEffectsMap();
+                if (effects != null) {
+                    effects.put(new ResourceLocation("sift", "sift"), new DimensionSpecialEffects(Float.NaN, true, DimensionSpecialEffects.SkyType.NORMAL, false, false) {
+                        @Override
+                        public Vec3 getBrightnessDependentFogColor(Vec3 biomeFogColor, float daylight) {
+                            return biomeFogColor.multiply(daylight * 0.94F + 0.06F, daylight * 0.94F + 0.06F, daylight * 0.91F + 0.09F);
+                        }
+                        @Override
+                        public boolean isFoggyAt(int x, int y) {
+                            return false;
+                        }
+                    });
+                }
             });
         }
 
