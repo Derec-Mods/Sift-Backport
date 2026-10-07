@@ -6,8 +6,6 @@
   "has_ceiling": false,
   "ambient_light": 0.8,
   "fixed_time": 6000,
-  "monster_spawn_light_level": 0,
-  "monster_spawn_block_light_limit": 0,
   "piglin_safe": false,
   "bed_works": true,
   "respawn_anchor_works": false,
