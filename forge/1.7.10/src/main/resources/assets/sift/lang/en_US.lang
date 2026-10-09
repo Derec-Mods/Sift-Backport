@@ -1,0 +1,7 @@
+tile.sift_backport.sculk_grass_block.name=Sculk Grass Block
+tile.sift_backport.light_sculk_grass_block.name=Light Sculk Grass Block
+tile.sift_backport.sculk_grass.name=Sculk Grass
+tile.sift_backport.tall_sculk_grass.name=Tall Sculk Grass
+entity.sift.blub.name=Blub
+entity.blub.name=Blub
+item.monsterPlacer.blub.name=Spawn Blub
