@@ -8,6 +8,7 @@ temporary/
 *.ipr
 *.iws
 temp.md
+.gradle-home/
 
 # IntelliJ
 out/
