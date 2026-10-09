@@ -7,6 +7,7 @@ temporary/
 *.iml
 *.ipr
 *.iws
+temp.md
 
 # IntelliJ
 out/
