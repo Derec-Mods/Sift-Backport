@@ -1,5 +1,6 @@
 package io.github.derexxd.sift_backport.entity;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -36,6 +37,11 @@ public class BlubEntity extends EntityCreature {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.2D);
+    }
+
+    @Override
+    protected void func_145780_a(int x, int y, int z, Block block) {
+        this.playSound("mob.slime.small", 0.3F, 1.5F);
     }
 
     @Override

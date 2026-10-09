@@ -66,9 +66,9 @@ public class WorldProviderSift extends WorldProvider {
         float daylight = MathHelper.cos(celestialAngle * ((float) Math.PI * 2.0F)) * 2.0F + 0.5F;
         daylight = MathHelper.clamp_float(daylight, 0.0F, 1.0F);
 
-        float r = 0.999F * (daylight * 0.94F + 0.06F);
-        float g = 0.718F * (daylight * 0.94F + 0.06F);
-        float b = 0.698F * (daylight * 0.91F + 0.09F);
+        float r = (110.0F / 255.0F) * (daylight * 0.94F + 0.06F);
+        float g = (225.0F / 255.0F) * (daylight * 0.94F + 0.06F);
+        float b = (211.0F / 255.0F) * (daylight * 0.91F + 0.09F);
         return Vec3.createVectorHelper(r, g, b);
     }
 
@@ -81,7 +81,7 @@ public class WorldProviderSift extends WorldProvider {
     @SideOnly(Side.CLIENT)
     @Override
     public Vec3 getSkyColor(Entity cameraEntity, float partialTicks) {
-        return Vec3.createVectorHelper(0.384D, 0.835D, 0.780D);
+        return Vec3.createVectorHelper(110.0D / 255.0D, 225.0D / 255.0D, 211.0D / 255.0D);
     }
 
     @SideOnly(Side.CLIENT)

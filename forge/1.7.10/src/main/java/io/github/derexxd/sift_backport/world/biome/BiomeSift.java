@@ -3,6 +3,7 @@ package io.github.derexxd.sift_backport.world.biome;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import io.github.derexxd.sift_backport.block.ModBlocks;
+import io.github.derexxd.sift_backport.entity.BlubEntity;
 import net.minecraft.world.biome.BiomeGenBase;
 
 public class BiomeSift extends BiomeGenBase {
@@ -13,19 +14,20 @@ public class BiomeSift extends BiomeGenBase {
         this.temperature = 0.5F;
         this.rainfall = 0.5F;
         this.setDisableRain();
-        this.waterColorMultiplier = 4159204;
+        this.waterColorMultiplier = 7266771;
         this.topBlock = ModBlocks.sculkGrassBlock;
         this.fillerBlock = ModBlocks.sculkGrassBlock;
         this.spawnableMonsterList.clear();
         this.spawnableCreatureList.clear();
         this.spawnableWaterCreatureList.clear();
         this.spawnableCaveCreatureList.clear();
+        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(BlubEntity.class, 10, 2, 4));
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public int getSkyColorByTemp(float currentTemperature) {
-        return 6477255;
+        return 7266771;
     }
 
     @SideOnly(Side.CLIENT)
