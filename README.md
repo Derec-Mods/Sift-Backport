@@ -30,3 +30,4 @@ Coded by DerexXD
 *   **[Vastiel](https://www.youtube.com/@Vastiel)** - Bedrock addon with multicolor variants 
 *   **[Octavvian](https://octavvian.itch.io/)** + anonymous Reddit user - Blub Spawn Egg Designs
 *   **Additional credits / inspiration**: [Sonicmarrion](https://www.planetminecraft.com/member/sonicmarrion/), [zerw](https://modrinth.com/user/Zerw), Eternal.Fil, [BlueRazzMojito](https://github.com/BlueRazzMojito)
+*   **[GT New Horizons Team](https://github.com/GTNewHorizons)** ([SinTh0r4s](https://github.com/SinTh0r4s) & contributors) - 1.7.10 modern build template & RetroFuturaGradle toolchain
