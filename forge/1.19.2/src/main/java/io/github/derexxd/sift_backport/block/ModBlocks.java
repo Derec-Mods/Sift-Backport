@@ -1,6 +1,5 @@
 package io.github.derexxd.sift_backport.block;
 
-import io.github.derexxd.sift_backport.Siftbackport;
 import io.github.derexxd.sift_backport.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -17,7 +16,7 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.function.Supplier;
 
 public class ModBlocks {
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Siftbackport.MODID);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, "sift");
 
     public static final RegistryObject<Block> SCULK_GRASS_BLOCK = registerBlock("sculk_grass_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.GRASS, MaterialColor.COLOR_ORANGE)
