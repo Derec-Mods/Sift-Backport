@@ -5,6 +5,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -22,6 +23,19 @@ public class ModBlocks {
             super(Material.grass);
             this.setHardness(0.6F);
             this.setStepSound(Block.soundTypeGrass);
+            this.setBlockName("sift_backport." + name);
+            this.setCreativeTab(CreativeTabs.tabBlock);
+            this.setBlockTextureName("sift:" + name);
+        }
+    }
+
+    public static class BlockChiseledSoulshale extends Block {
+        public BlockChiseledSoulshale(String name) {
+            super(new Material(MapColor.cyanColor));
+            this.setHardness(2.0F);
+            this.setResistance(10.0F);
+            this.setStepSound(Block.soundTypeStone);
+            this.setHarvestLevel("pickaxe", 0);
             this.setBlockName("sift_backport." + name);
             this.setCreativeTab(CreativeTabs.tabBlock);
             this.setBlockTextureName("sift:" + name);
@@ -132,6 +146,7 @@ public class ModBlocks {
     public static Block sculkGrass;
     public static Block tallSculkGrassBottom;
     public static Block tallSculkGrassTop;
+    public static Block chiseledSoulshale;
 
     public static void register() {
         sculkGrassBlock = new BlockSculk("sculk_grass_block");
@@ -139,11 +154,13 @@ public class ModBlocks {
         sculkGrass = new BlockSculkBush("sculk_grass");
         tallSculkGrassBottom = new BlockTallSculkBottom("tall_sculk_grass");
         tallSculkGrassTop = new BlockTallSculkTop("tall_sculk_grass_top");
+        chiseledSoulshale = new BlockChiseledSoulshale("chiseled_soulshale");
 
         GameRegistry.registerBlock(sculkGrassBlock, "sculk_grass_block");
         GameRegistry.registerBlock(lightSculkGrassBlock, "light_sculk_grass_block");
         GameRegistry.registerBlock(sculkGrass, "sculk_grass");
         GameRegistry.registerBlock(tallSculkGrassBottom, "tall_sculk_grass");
         GameRegistry.registerBlock(tallSculkGrassTop, "tall_sculk_grass_top");
+        GameRegistry.registerBlock(chiseledSoulshale, "chiseled_soulshale");
     }
 }

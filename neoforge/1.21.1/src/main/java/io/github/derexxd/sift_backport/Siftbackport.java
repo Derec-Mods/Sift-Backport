@@ -25,6 +25,7 @@ public class Siftbackport {
         io.github.derexxd.sift_backport.block.ModBlocks.BLOCKS.register(modEventBus);
         io.github.derexxd.sift_backport.item.ModItems.ITEMS.register(modEventBus);
         io.github.derexxd.sift_backport.entity.ModEntities.ENTITY_TYPES.register(modEventBus);
+        io.github.derexxd.sift_backport.sound.ModSounds.SOUND_EVENTS.register(modEventBus);
         
         NeoForge.EVENT_BUS.addListener(io.github.derexxd.sift_backport.command.SiftTeleportCommand::onRegisterCommands);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -45,6 +46,9 @@ public class Siftbackport {
             event.accept(io.github.derexxd.sift_backport.block.ModBlocks.LIGHT_SCULK_GRASS_BLOCK);
             event.accept(io.github.derexxd.sift_backport.block.ModBlocks.SCULK_GRASS);
             event.accept(io.github.derexxd.sift_backport.block.ModBlocks.TALL_SCULK_GRASS);
+        }
+        if (event.getTabKey() == net.minecraft.world.item.CreativeModeTabs.BUILDING_BLOCKS) {
+            event.accept(io.github.derexxd.sift_backport.block.ModBlocks.CHISELED_SOULSHALE);
         }
     }
 

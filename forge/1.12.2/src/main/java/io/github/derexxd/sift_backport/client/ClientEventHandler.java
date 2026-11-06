@@ -32,5 +32,7 @@ public class ClientEventHandler {
                 new ModelResourceLocation(ModBlocks.SCULK_GRASS.getRegistryName(), "inventory"));
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.TALL_SCULK_GRASS), 0,
                 new ModelResourceLocation(ModBlocks.TALL_SCULK_GRASS.getRegistryName(), "inventory"));
+        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.CHISELED_SOULSHALE), 0,
+                new ModelResourceLocation(ModBlocks.CHISELED_SOULSHALE.getRegistryName(), "inventory"));
     }
 }

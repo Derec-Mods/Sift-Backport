@@ -30,6 +30,7 @@ public class Siftbackport {
         io.github.derexxd.sift_backport.block.ModBlocks.BLOCKS.register(modEventBus);
         io.github.derexxd.sift_backport.item.ModItems.ITEMS.register(modEventBus);
         io.github.derexxd.sift_backport.entity.ModEntities.ENTITY_TYPES.register(modEventBus);
+        io.github.derexxd.sift_backport.sound.ModSounds.SOUND_EVENTS.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.addListener(io.github.derexxd.sift_backport.command.SiftTeleportCommand::onRegisterCommands);

@@ -1,5 +1,7 @@
 package io.github.derexxd.sift_backport.block;
 
+import io.github.derexxd.sift_backport.sound.ModSounds;
+
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -50,6 +52,12 @@ public class ModBlocks {
                     .offsetType(BlockBehaviour.OffsetType.XZ)
                     .pushReaction(PushReaction.DESTROY));
 
+    public static final Block CHISELED_SOULSHALE = registerBlock("chiseled_soulshale", Block::new,
+            BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.WARPED_STEM)
+                    .strength(2.0F, 6.0F)
+                    .sound(ModSounds.CHISELED_SOULSHALE));
+
     private static Block registerBlock(String name, Function<BlockBehaviour.Properties, Block> factory, BlockBehaviour.Properties properties) {
         Identifier id = Identifier.parse("sift:" + name);
         ResourceKey<Block> blockKey = ResourceKey.create(Registries.BLOCK, id);
@@ -84,6 +92,9 @@ public class ModBlocks {
             output.accept(LIGHT_SCULK_GRASS_BLOCK);
             output.accept(SCULK_GRASS);
             output.accept(TALL_SCULK_GRASS);
+        });
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register(output -> {
+            output.accept(CHISELED_SOULSHALE);
         });
     }
 }

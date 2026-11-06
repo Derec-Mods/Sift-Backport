@@ -30,6 +30,19 @@ public class ModBlocks {
         }
     }
 
+    public static class BlockChiseledSoulshale extends Block {
+        public BlockChiseledSoulshale(String name) {
+            super(new Material(MapColor.CYAN), MapColor.CYAN);
+            this.setHardness(2.0F);
+            this.setResistance(10.0F);
+            this.setSoundType(SoundType.STONE);
+            this.setHarvestLevel("pickaxe", 0);
+            this.setRegistryName(new net.minecraft.util.ResourceLocation(Siftbackport.MODID, name));
+            this.setTranslationKey("sift_backport." + name);
+            this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+        }
+    }
+
     public static class BlockSculkBush extends BlockBush {
         public BlockSculkBush(String name) {
             super(Material.PLANTS);
@@ -66,6 +79,7 @@ public class ModBlocks {
     public static final Block LIGHT_SCULK_GRASS_BLOCK = new BlockSculk("light_sculk_grass_block");
     public static final Block SCULK_GRASS = new BlockSculkBush("sculk_grass");
     public static final Block TALL_SCULK_GRASS = new BlockTallSculk("tall_sculk_grass");
+    public static final Block CHISELED_SOULSHALE = new BlockChiseledSoulshale("chiseled_soulshale");
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -73,7 +87,8 @@ public class ModBlocks {
             SCULK_GRASS_BLOCK,
             LIGHT_SCULK_GRASS_BLOCK,
             SCULK_GRASS,
-            TALL_SCULK_GRASS
+            TALL_SCULK_GRASS,
+            CHISELED_SOULSHALE
         );
     }
 
@@ -83,7 +98,8 @@ public class ModBlocks {
             new ItemBlock(SCULK_GRASS_BLOCK).setRegistryName(SCULK_GRASS_BLOCK.getRegistryName()),
             new ItemBlock(LIGHT_SCULK_GRASS_BLOCK).setRegistryName(LIGHT_SCULK_GRASS_BLOCK.getRegistryName()),
             new ItemBlock(SCULK_GRASS).setRegistryName(SCULK_GRASS.getRegistryName()),
-            new ItemBlock(TALL_SCULK_GRASS).setRegistryName(TALL_SCULK_GRASS.getRegistryName())
+            new ItemBlock(TALL_SCULK_GRASS).setRegistryName(TALL_SCULK_GRASS.getRegistryName()),
+            new ItemBlock(CHISELED_SOULSHALE).setRegistryName(CHISELED_SOULSHALE.getRegistryName())
         );
     }
 }

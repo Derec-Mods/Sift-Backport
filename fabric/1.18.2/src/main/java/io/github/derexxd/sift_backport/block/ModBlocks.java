@@ -1,5 +1,7 @@
 package io.github.derexxd.sift_backport.block;
 
+import io.github.derexxd.sift_backport.sound.ModSounds;
+
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
@@ -35,6 +37,19 @@ public class ModBlocks {
                     .noCollission()
                     .instabreak()
                     .sound(SoundType.GRASS)));
+
+    public static final Block CHISELED_SOULSHALE = registerBlock("chiseled_soulshale",
+            new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.WARPED_STEM)
+                    .strength(2.0F, 6.0F)
+                    .sound(ModSounds.CHISELED_SOULSHALE)),
+            CreativeModeTab.TAB_BUILDING_BLOCKS);
+
+    private static Block registerBlock(String name, Block block, CreativeModeTab tab) {
+        ResourceLocation id = new ResourceLocation("sift", name);
+        Registry.register(Registry.BLOCK, id, block);
+        Registry.register(Registry.ITEM, id, new BlockItem(block, new Item.Properties().tab(tab)));
+        return block;
+    }
 
     private static Block registerBlock(String name, Block block) {
         ResourceLocation id = new ResourceLocation("sift", name);

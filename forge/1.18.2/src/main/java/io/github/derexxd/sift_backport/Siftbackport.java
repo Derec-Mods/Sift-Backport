@@ -8,6 +8,7 @@ import io.github.derexxd.sift_backport.command.SiftTeleportCommand;
 import io.github.derexxd.sift_backport.entity.BlubEntity;
 import io.github.derexxd.sift_backport.entity.ModEntities;
 import io.github.derexxd.sift_backport.item.ModItems;
+import io.github.derexxd.sift_backport.sound.ModSounds;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -46,6 +47,7 @@ public class Siftbackport {
         ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModEntities.ENTITY_TYPES.register(modEventBus);
+        ModSounds.SOUND_EVENTS.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.addListener(SiftTeleportCommand::onRegisterCommands);

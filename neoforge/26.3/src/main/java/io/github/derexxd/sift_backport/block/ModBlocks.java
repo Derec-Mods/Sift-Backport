@@ -1,5 +1,7 @@
 package io.github.derexxd.sift_backport.block;
 
+import io.github.derexxd.sift_backport.sound.ModSounds;
+
 import io.github.derexxd.sift_backport.item.ModItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
@@ -53,6 +55,13 @@ public class ModBlocks {
                     .sound(SoundType.GRASS)
                     .offsetType(BlockBehaviour.OffsetType.XZ)
                     .pushReaction(PushReaction.POPPED));
+
+    public static final DeferredBlock<Block> CHISELED_SOULSHALE = registerBlock("chiseled_soulshale",
+            Block::new,
+            BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.WARPED_STEM)
+                    .strength(2.0F, 6.0F)
+                    .sound(ModSounds.CHISELED_SOULSHALE));
 
     private static DeferredBlock<Block> registerBlock(String name, Function<BlockBehaviour.Properties, Block> factory, BlockBehaviour.Properties properties) {
         Identifier id = Identifier.parse("sift:" + name);

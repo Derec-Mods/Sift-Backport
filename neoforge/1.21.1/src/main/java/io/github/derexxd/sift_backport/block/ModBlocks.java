@@ -1,5 +1,7 @@
 package io.github.derexxd.sift_backport.block;
 
+import io.github.derexxd.sift_backport.sound.ModSounds;
+
 import io.github.derexxd.sift_backport.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DoubleHighBlockItem;
@@ -46,6 +48,12 @@ public class ModBlocks {
                     .sound(SoundType.GRASS)
                     .offsetType(BlockBehaviour.OffsetType.XZ)
                     .pushReaction(PushReaction.DESTROY)));
+
+    public static final DeferredBlock<Block> CHISELED_SOULSHALE = registerBlock("chiseled_soulshale",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.WARPED_STEM)
+                    .strength(2.0F, 6.0F)
+                    .sound(ModSounds.CHISELED_SOULSHALE)));
 
     private static DeferredBlock<Block> registerBlock(String name, Supplier<Block> block) {
         DeferredBlock<Block> toReturn = BLOCKS.register(name, block);

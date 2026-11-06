@@ -1,5 +1,7 @@
 package io.github.derexxd.sift_backport.block;
 
+import io.github.derexxd.sift_backport.sound.ModSounds;
+
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -46,6 +48,12 @@ public class ModBlocks {
                     .offsetType(BlockBehaviour.OffsetType.XZ)
                     .pushReaction(PushReaction.DESTROY)));
 
+    public static final Block CHISELED_SOULSHALE = registerBlock("chiseled_soulshale",
+            new Block(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.WARPED_STEM)
+                    .strength(2.0F, 6.0F)
+                    .sound(ModSounds.CHISELED_SOULSHALE)));
+
     private static Block registerBlock(String name, Block block) {
         ResourceLocation id = ResourceLocation.parse("sift:" + name);
         Registry.register(BuiltInRegistries.BLOCK, id, block);
@@ -66,6 +74,9 @@ public class ModBlocks {
             entries.accept(LIGHT_SCULK_GRASS_BLOCK);
             entries.accept(SCULK_GRASS);
             entries.accept(TALL_SCULK_GRASS);
+        });
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.BUILDING_BLOCKS).register(entries -> {
+            entries.accept(CHISELED_SOULSHALE);
         });
     }
 }

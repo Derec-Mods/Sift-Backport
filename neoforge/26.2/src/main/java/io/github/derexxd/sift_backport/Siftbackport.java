@@ -8,6 +8,7 @@ import io.github.derexxd.sift_backport.command.SiftTeleportCommand;
 import io.github.derexxd.sift_backport.entity.BlubEntity;
 import io.github.derexxd.sift_backport.entity.ModEntities;
 import io.github.derexxd.sift_backport.item.ModItems;
+import io.github.derexxd.sift_backport.sound.ModSounds;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -36,6 +37,7 @@ public class Siftbackport {
         ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModEntities.ENTITY_TYPES.register(modEventBus);
+        ModSounds.SOUND_EVENTS.register(modEventBus);
 
         NeoForge.EVENT_BUS.addListener(SiftTeleportCommand::onRegisterCommands);
 
@@ -61,6 +63,9 @@ public class Siftbackport {
             event.accept(ModBlocks.LIGHT_SCULK_GRASS_BLOCK);
             event.accept(ModBlocks.SCULK_GRASS);
             event.accept(ModBlocks.TALL_SCULK_GRASS);
+        }
+        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+            event.accept(ModBlocks.CHISELED_SOULSHALE);
         }
     }
 
