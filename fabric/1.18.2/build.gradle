@@ -51,6 +51,8 @@ tasks.withType(AbstractArchiveTask).configureEach {
 tasks.named('processResources', ProcessResources).configure {
     from(project.file("../../shared")) {
         include "assets/**/*.png"
+        include "assets/**/*.ogg"
+        include "assets/sift/sounds.json"
         exclude "assets/screenshots/**"
     }
 }

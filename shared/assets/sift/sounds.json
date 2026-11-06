@@ -1,0 +1,53 @@
+{
+  "block.chiseled_soulshale.break": {
+    "sounds": [
+      "sift:block/chiseled_soulshale/break1",
+      "sift:block/chiseled_soulshale/break2",
+      "sift:block/chiseled_soulshale/break3",
+      "sift:block/chiseled_soulshale/break4",
+      "sift:block/chiseled_soulshale/break5"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.chiseled_soulshale.fall": {
+    "sounds": [
+      "sift:block/chiseled_soulshale/step1",
+      "sift:block/chiseled_soulshale/step2",
+      "sift:block/chiseled_soulshale/step3",
+      "sift:block/chiseled_soulshale/step4",
+      "sift:block/chiseled_soulshale/step5"
+    ],
+    "subtitle": "subtitles.block.generic.fall"
+  },
+  "block.chiseled_soulshale.hit": {
+    "sounds": [
+      "sift:block/chiseled_soulshale/hit1",
+      "sift:block/chiseled_soulshale/hit2",
+      "sift:block/chiseled_soulshale/hit3",
+      "sift:block/chiseled_soulshale/hit4",
+      "sift:block/chiseled_soulshale/hit5"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.chiseled_soulshale.place": {
+    "sounds": [
+      "sift:block/chiseled_soulshale/place1",
+      "sift:block/chiseled_soulshale/place2",
+      "sift:block/chiseled_soulshale/place3",
+      "sift:block/chiseled_soulshale/place4",
+      "sift:block/chiseled_soulshale/place5"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.chiseled_soulshale.step": {
+    "sounds": [
+      "sift:block/chiseled_soulshale/step1",
+      "sift:block/chiseled_soulshale/step2",
+      "sift:block/chiseled_soulshale/step3",
+      "sift:block/chiseled_soulshale/step4",
+      "sift:block/chiseled_soulshale/step5"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  }
+}
+
