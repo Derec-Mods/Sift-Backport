@@ -19,20 +19,12 @@ public class TeleporterSift extends Teleporter {
     public void placeInPortal(Entity entityIn, float rotationYaw) {
         int x = (int) entityIn.posX;
         int z = (int) entityIn.posZ;
-        BlockPos topPos = this.world.getTopSolidOrLiquidBlock(new BlockPos(x, 0, z));
-
-        if (topPos.getY() <= 0) {
-            topPos = new BlockPos(x, 65, z);
-            for (int dx = -1; dx <= 1; ++dx) {
-                for (int dz = -1; dz <= 1; ++dz) {
-                    this.world.setBlockState(topPos.add(dx, -1, dz), Blocks.STONE.getDefaultState());
-                    this.world.setBlockToAir(topPos.add(dx, 0, dz));
-                    this.world.setBlockToAir(topPos.add(dx, 1, dz));
-                }
-            }
+        BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(x, 180, z);
+        while (pos.getY() < 250 && (!this.world.isAirBlock(pos) || !this.world.isAirBlock(pos.up()))) {
+            pos.setY(pos.getY() + 1);
         }
 
-        entityIn.setLocationAndAngles((double) topPos.getX() + 0.5D, (double) topPos.getY() + 1.0D, (double) topPos.getZ() + 0.5D, entityIn.rotationYaw, 0.0F);
+        entityIn.setLocationAndAngles(entityIn.posX, (double) pos.getY(), entityIn.posZ, entityIn.rotationYaw, 0.0F);
         entityIn.motionX = 0.0D;
         entityIn.motionY = 0.0D;
         entityIn.motionZ = 0.0D;

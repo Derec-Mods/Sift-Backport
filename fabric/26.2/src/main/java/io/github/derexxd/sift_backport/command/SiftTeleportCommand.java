@@ -15,7 +15,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.permissions.Permissions;
 import net.minecraft.world.entity.Relative;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.levelgen.Heightmap;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -68,13 +67,16 @@ public class SiftTeleportCommand {
                 targetLevel = siftLevel;
             }
 
-            double x = player.getX();
+                        double x = player.getX();
             double z = player.getZ();
-            BlockPos topPos = targetLevel.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, new BlockPos((int) x, 0, (int) z));
-            double y = topPos.getY();
+            BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos((int) x, 180, (int) z);
+            while (pos.getY() < 310 && (!targetLevel.isEmptyBlock(pos) || !targetLevel.isEmptyBlock(pos.above()))) {
+                pos.setY(pos.getY() + 1);
+            }
+            double y = pos.getY();
 
             Set<Relative> relatives = Collections.emptySet();
-            player.teleportTo(targetLevel, x + 0.5, y + 1.0, z + 0.5, relatives, player.getYRot(), 0.0F, true);
+            player.teleportTo(targetLevel, x, y, z, relatives, player.getYRot(), 0.0F, true);
         }
 
         return targets.size();
