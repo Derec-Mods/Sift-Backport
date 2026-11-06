@@ -13,7 +13,7 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> CHISELED_SOULSHALE_BREAK = register("block.chiseled_soulshale.break");
     public static final DeferredHolder<SoundEvent, SoundEvent> CHISELED_SOULSHALE_STEP = register("block.chiseled_soulshale.step");
     public static final DeferredHolder<SoundEvent, SoundEvent> CHISELED_SOULSHALE_PLACE = register("block.chiseled_soulshale.place");
-    public static final DeferredHolder<SoundEvent, SoundEvent> CHISELED_SOULSHALE_HIT = register("block.chiseled_soulshALE.hit".ToLower());
+    public static final DeferredHolder<SoundEvent, SoundEvent> CHISELED_SOULSHALE_HIT = register("block.chiseled_soulshale.hit");
     public static final DeferredHolder<SoundEvent, SoundEvent> CHISELED_SOULSHALE_FALL = register("block.chiseled_soulshale.fall");
 
     public static final DeferredSoundType CHISELED_SOULSHALE = new DeferredSoundType(1.0F, 1.0F,
