@@ -1,10 +1,8 @@
 package io.github.derexxd.sift_backport.world.gen;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import io.github.derexxd.sift_backport.block.ModBlocks;
-import io.github.derexxd.sift_backport.world.biome.ModBiomes;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
