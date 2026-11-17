@@ -36,9 +36,11 @@ public class ChunkProviderSift implements IChunkProvider {
         generateTerrain(chunkX, chunkZ, blocks, meta);
 
         Chunk chunk = new Chunk(this.world, blocks, meta, chunkX, chunkZ);
+        BiomeGenBase[] biomesForGeneration = this.world.getWorldChunkManager().loadBlockGeneratorData((BiomeGenBase[]) null, chunkX * 16, chunkZ * 16, 16, 16);
         byte[] biomes = chunk.getBiomeArray();
-        byte biomeId = (byte) ModBiomes.siftBiome.biomeID;
-        Arrays.fill(biomes, biomeId);
+        for (int i = 0; i < biomes.length; ++i) {
+            biomes[i] = (byte) biomesForGeneration[i].biomeID;
+        }
 
         chunk.generateSkylightMap();
         return chunk;
