@@ -1,10 +1,8 @@
 package io.github.derexxd.sift_backport.world.gen;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import io.github.derexxd.sift_backport.block.ModBlocks;
-import io.github.derexxd.sift_backport.world.biome.ModBiomes;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
@@ -36,9 +34,11 @@ public class ChunkProviderSift implements IChunkProvider {
         generateTerrain(chunkX, chunkZ, blocks, meta);
 
         Chunk chunk = new Chunk(this.world, blocks, meta, chunkX, chunkZ);
+        BiomeGenBase[] biomesForGeneration = this.world.getWorldChunkManager().loadBlockGeneratorData((BiomeGenBase[]) null, chunkX * 16, chunkZ * 16, 16, 16);
         byte[] biomes = chunk.getBiomeArray();
-        byte biomeId = (byte) ModBiomes.siftBiome.biomeID;
-        Arrays.fill(biomes, biomeId);
+        for (int i = 0; i < biomes.length; ++i) {
+            biomes[i] = (byte) biomesForGeneration[i].biomeID;
+        }
 
         chunk.generateSkylightMap();
         return chunk;
